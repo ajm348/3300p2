@@ -1,0 +1,391 @@
+Year,Team,Player,ast,stl,blk,3p%,3pA,2p%,2pA,MP,WS
+2015,Golden State Warriors,Stephen Curry,7.7,2.0,0.2,.443,8.1,.528,8.7,32.7,15.7
+2015,Golden State Warriors,Klay Thompson,2.9,1.1,0.8,.439,7.1,.481,9.8,31.9,8.8
+2015,Golden State Warriors,Draymond Green,3.7,1.6,1.3,.337,4.2,.523,5.5,31.5,8.5
+2015,Golden State Warriors,Harrison Barnes,1.4,0.7,0.2,.405,2.6,.519,5.4,28.3,6.7
+2015,Golden State Warriors,Andre Iguodala,3.0,1.2,0.3,.349,2.8,.553,3.7,26.9,5.1
+2014,San Antonio Spurs,Tony Parker,5.7,0.5,0.1,.373,1.0,.509,12.5,29.4,5.9
+2014,San Antonio Spurs,Tim Duncan,3.0,0.6,1.9,.000,0.1,.493,12.2,29.2,7.4
+2014,San Antonio Spurs,Kawhi Leonard,2.0,1.7,0.8,.379,2.8,.579,7.0,29.1,7.7
+2014,San Antonio Spurs,Marco Belinelli,2.2,0.6,0.1,.430,3.7,.525,5.0,25.2,5.9
+2014,San Antonio Spurs,Boris Diaw,2.8,0.6,0.4,.402,1.4,.549,5.9,25.0,4.9
+2013,Miami Heat,LeBron James,7.3,1.7,0.9,.406,3.3,.602,14.5,37.9,19.3
+2013,Miami Heat,Dwyane Wade,5.1,1.9,0.8,.258,1.0,.537,14.9,34.7,9.6
+2013,Miami Heat,Chris Bosh,1.7,0.9,1.4,.284,1.0,.557,11.3,33.2,9.0
+2013,Miami Heat,Mario Chalmers,3.5,1.5,0.2,.409,3.9,.456,3.0,26.9,5.2
+2013,Miami Heat,Ray Allen,1.7,0.8,0.2,.419,4.2,.480,4.0,25.8,5.4
+2012,Miami Heat,LeBron James,6.2,1.9,0.8,.362,2.4,.556,16.5,37.5,14.5
+2012,Miami Heat,Chris Bosh,1.8,0.9,0.8,.286,0.6,.496,13.5,35.2,6.9
+2012,Miami Heat,Dwyane Wade,4.6,1.7,1.3,.268,1.1,.513,15.9,33.2,7.7
+2012,Miami Heat,Mario Chalmers,3.5,1.5,0.2,.388,4.1,.513,3.7,28.5,4.3
+2012,Miami Heat,Udonis Haslem,0.7,0.5,0.4,None,0.0,.423,5.6,24.8,3.5
+2011,Dallas Mavericks,Dirk Nowitzki,2.6,0.5,0.6,.393,2.3,.538,13.8,34.3,11.1
+2011,Dallas Mavericks,Jason Kidd,8.2,1.7,0.4,.340,4.9,.400,2.6,33.2,6.4
+2011,Dallas Mavericks,Jason Terry,4.1,1.1,0.2,.362,4.3,.493,9.0,31.3,5.3
+2011,Dallas Mavericks,Caron Butler,1.6,1.0,0.3,.431,2.2,.454,10.8,29.9,1.2
+2011,Dallas Mavericks,Shawn Marion,1.4,0.9,0.6,.152,0.4,.536,10.0,28.2,5.6
+2010,Los Angeles Lakers,Kobe Bryant,5.0,1.5,0.3,.329,4.1,.487,17.4,38.8,9.4
+2010,Los Angeles Lakers,Pau Gasol,3.4,0.6,1.7,.000,0.1,.539,12.9,37.0,11.0
+2010,Los Angeles Lakers,Metta World Peace,3.0,1.4,0.3,.355,3.8,.453,5.8,33.8,5.3
+2010,Los Angeles Lakers,Lamar Odom,3.3,0.9,0.7,.319,2.2,.510,6.8,31.5,7.7
+2010,Los Angeles Lakers,Andrew Bynum,1.0,0.5,1.4,.000,0.0,.571,10.6,30.4,7.8
+2009,Los Angeles Lakers,Pau Gasol,3.5,0.6,1.0,.500,0.0,.567,12.9,37.0,13.9
+2009,Los Angeles Lakers,Kobe Bryant,4.9,1.5,0.5,.351,4.1,.496,16.8,36.1,12.7
+2009,Los Angeles Lakers,Derek Fisher,3.2,1.2,0.1,.397,3.7,.446,4.7,29.8,6.3
+2009,Los Angeles Lakers,Lamar Odom,2.6,1.0,1.3,.320,1.3,.522,7.7,29.7,6.9
+2009,Los Angeles Lakers,Andrew Bynum,1.4,0.4,1.8,None,0.0,.560,10.0,28.9,5.5
+2008,Boston Celtics,Ray Allen,3.1,0.9,0.2,.398,6.2,.485,7.3,35.9,9.7
+2008,Boston Celtics,Paul Pierce,4.5,1.3,0.5,.392,4.6,.499,9.2,35.9,12.4
+2008,Boston Celtics,Kevin Garnett,3.4,1.4,1.3,.000,0.2,.545,13.8,32.8,12.9
+2008,Boston Celtics,Rajon Rondo,5.1,1.7,0.2,.263,0.2,.499,9.0,29.9,7.2
+2008,Boston Celtics,James Posey,1.5,1.0,0.3,.380,3.8,.496,1.8,24.6,6.2
+2007,San Antonio Spurs,Tim Duncan,3.4,0.8,2.4,.111,0.1,.550,14.0,34.1,13.0
+2007,San Antonio Spurs,Tony Parker,5.5,1.1,0.1,.395,0.5,.525,13.7,32.5,9.6
+2007,San Antonio Spurs,Bruce Bowen,1.4,0.8,0.3,.384,2.8,.426,2.9,30.0,4.1
+2007,San Antonio Spurs,Manu Ginobili,3.5,1.5,0.4,.396,4.3,.505,7.1,27.5,10.6
+2007,San Antonio Spurs,James White,0.8,0.5,0.2,.286,1.2,.471,5.7,22.8,0.3
+2006,Miami Heat,Dwyane Wade,6.7,1.9,0.8,.171,1.0,.513,17.8,38.6,14.4
+2006,Miami Heat,Jason Williams,4.9,0.9,0.1,.372,4.9,.506,5.4,31.8,4.8
+2006,Miami Heat,Udonis Haslem,1.2,0.6,0.2,.000,0.0,.509,7.3,30.8,7.0
+2006,Miami Heat,Shaquille O'Neal,1.9,0.4,1.8,None,0.0,.600,13.6,30.6,6.2
+2006,Miami Heat,James Posey,1.3,0.8,0.3,.403,4.3,.400,1.6,28.6,4.2
+2005,San Antonio Spurs,Tony Parker,6.1,1.2,0.1,.276,2.0,.516,12.0,34.2,8.1
+2005,San Antonio Spurs,Tim Duncan,2.7,0.7,2.6,.333,0.1,.498,15.7,33.4,11.2
+2005,San Antonio Spurs,Bruce Bowen,1.5,0.7,0.5,.403,3.1,.432,4.2,32.0,6.1
+2005,San Antonio Spurs,Manu Ginobili,3.9,1.6,0.4,.376,3.5,.517,7.1,29.6,11.0
+2005,San Antonio Spurs,Rasho Nesterovic,1.0,0.4,1.7,None,0.0,.460,6.1,25.5,4.2
+2004,Detroit Pistons,Ben Wallace,1.7,1.8,3.0,.125,0.1,.424,9.1,37.7,10.2
+2004,Detroit Pistons,Richard Hamilton,4.0,1.3,0.2,.265,0.9,.466,14.1,35.5,8.1
+2004,Detroit Pistons,Chauncey Billups,5.7,1.1,0.1,.388,4.3,.396,8.5,35.4,11.3
+2004,Detroit Pistons,Tayshaun Prince,2.3,0.8,0.8,.363,1.9,.496,6.9,32.9,7.5
+2004,Detroit Pistons,Rasheed Wallace,1.8,1.1,2.0,.319,3.1,.467,9.6,30.6,2.4
+2003,San Antonio Spurs,Tim Duncan,3.9,0.7,2.9,.273,0.3,.517,16.9,39.3,16.5
+2003,San Antonio Spurs,Tony Parker,5.3,0.9,0.0,.337,3.0,.503,9.8,33.8,7.7
+2003,San Antonio Spurs,Bruce Bowen,1.4,0.8,0.5,.441,2.8,.488,3.0,31.3,5.1
+2003,San Antonio Spurs,Stephen Jackson,2.3,1.6,0.4,.320,3.7,.501,6.5,28.2,4.8
+2003,San Antonio Spurs,David Robinson,1.0,0.8,1.7,None,0.0,.469,6.6,26.2,6.0
+2002,Los Angeles Lakers,Kobe Bryant,5.5,1.5,0.4,.250,1.7,.489,18.3,38.3,12.7
+2002,Los Angeles Lakers,Shaquille O'Neal,3.0,0.6,2.0,.000,0.0,.580,18.3,36.1,13.2
+2002,Los Angeles Lakers,Derek Fisher,2.6,0.9,0.1,.413,5.0,.410,4.5,28.2,5.5
+2002,Los Angeles Lakers,Rick Fox,3.5,0.8,0.3,.313,2.5,.479,4.8,27.9,4.3
+2002,Los Angeles Lakers,Robert Horry,2.9,1.0,1.1,.374,2.5,.416,3.2,26.4,6.9
+2001,Los Angeles Lakers,Kobe Bryant,5.0,1.7,0.6,.305,2.9,.489,19.3,40.9,11.3
+2001,Los Angeles Lakers,Shaquille O'Neal,3.7,0.6,2.8,.000,0.0,.573,19.2,39.5,14.9
+2001,Los Angeles Lakers,Derek Fisher,4.4,2.0,0.1,.397,3.2,.419,6.2,35.5,1.8
+2001,Los Angeles Lakers,Horace Grant,1.6,0.7,0.8,.000,0.0,.465,7.4,31.0,6.5
+2001,Los Angeles Lakers,Rick Fox,3.2,0.9,0.4,.393,3.7,.488,4.2,27.9,5.1
+2000,Los Angeles Lakers,Shaquille O'Neal,3.8,0.5,3.0,.000,0.0,.575,21.1,40.0,18.6
+2000,Los Angeles Lakers,Kobe Bryant,4.9,1.6,0.9,.319,2.2,.489,15.7,38.2,10.6
+2000,Los Angeles Lakers,Glen Rice,2.2,0.6,0.2,.367,2.9,.449,9.4,31.6,9.0
+2000,Los Angeles Lakers,Ron Harper,3.4,1.1,0.5,.311,1.3,.421,5.3,25.5,4.0
+2000,Los Angeles Lakers,A.C. Green,1.0,0.6,0.2,.250,0.0,.449,4.7,23.5,5.0
+1999,San Antonio Spurs,Tim Duncan,2.4,0.9,2.5,.143,0.1,.498,16.8,39.3,8.7
+1999,San Antonio Spurs,Avery Johnson,7.4,1.0,0.2,.083,0.2,.483,9.0,33.4,3.9
+1999,San Antonio Spurs,David Robinson,2.1,1.4,2.4,.000,0.0,.510,10.7,31.7,8.4
+1999,San Antonio Spurs,Sean Elliott,2.3,0.5,0.3,.328,2.4,.436,7.8,30.2,3.5
+1999,San Antonio Spurs,Mario Elie,1.9,1.0,0.3,.374,2.3,.518,4.8,27.5,4.5
+1998,Chicago Bulls,Michael Jordan,3.5,1.7,0.5,.238,1.5,.482,21.5,38.8,15.8
+1998,Chicago Bulls,Scottie Pippen,5.8,1.8,1.0,.318,4.4,.496,11.6,37.5,6.6
+1998,Chicago Bulls,Dennis Rodman,2.9,0.6,0.2,.174,0.3,.448,4.2,35.7,7.8
+1998,Chicago Bulls,Toni Kukoc,4.2,1.0,0.5,.362,2.4,.480,9.0,30.2,7.0
+1998,Chicago Bulls,Luc Longley,2.8,0.6,1.1,None,0.0,.455,10.5,29.4,3.4
+1997,Chicago Bulls,Michael Jordan,4.3,1.7,0.5,.374,3.6,.507,19.5,37.9,18.3
+1997,Chicago Bulls,Scottie Pippen,5.7,1.9,0.5,.368,5.2,.522,11.5,37.7,13.1
+1997,Chicago Bulls,Dennis Rodman,3.1,0.6,0.3,.263,0.3,.461,4.9,35.4,6.0
+1997,Chicago Bulls,Toni Kukoc,4.5,1.1,0.5,.331,2.6,.518,8.0,28.2,6.9
+1997,Chicago Bulls,Luc Longley,2.4,0.4,1.1,.000,0.0,.458,8.2,24.9,3.1
+1996,Chicago Bulls,Michael Jordan,4.3,2.2,0.5,.427,3.2,.506,19.4,37.7,20.4
+1996,Chicago Bulls,Scottie Pippen,5.9,1.7,0.7,.374,5.2,.507,10.6,36.7,12.3
+1996,Chicago Bulls,Dennis Rodman,2.5,0.6,0.4,.111,0.4,.516,4.3,32.6,6.2
+1996,Chicago Bulls,Luc Longley,1.9,0.4,1.4,None,0.0,.482,8.1,26.5,3.5
+1996,Chicago Bulls,Toni Kukoc,3.5,0.8,0.3,.403,2.7,.524,7.0,26.0,10.1
+1995,Houston Rockets,Hakeem Olajuwon,3.5,1.8,3.4,.188,0.2,.520,21.2,39.6,10.7
+1995,Houston Rockets,Clyde Drexler,4.4,1.8,0.7,.357,4.8,.575,10.2,37.1,5.2
+1995,Houston Rockets,Otis Thorpe,1.6,0.6,0.4,.000,0.1,.567,10.1,33.0,2.3
+1995,Houston Rockets,Robert Horry,3.4,1.5,1.2,.379,3.5,.497,4.8,32.4,4.2
+1995,Houston Rockets,Vernon Maxwell,4.3,1.2,0.2,.324,6.9,.485,5.3,31.8,1.9
+1994,Houston Rockets,Hakeem Olajuwon,3.6,1.6,3.7,.421,0.2,.529,20.9,41.0,14.3
+1994,Houston Rockets,Otis Thorpe,2.3,0.8,0.3,.000,0.0,.562,9.7,35.5,9.8
+1994,Houston Rockets,Vernon Maxwell,5.1,1.7,0.3,.298,5.4,.454,7.6,34.3,3.5
+1994,Houston Rockets,Robert Horry,2.9,1.5,0.9,.324,1.7,.491,7.0,29.3,5.9
+1994,Houston Rockets,Kenny Smith,4.2,0.8,0.1,.405,2.8,.513,6.3,28.3,6.1
+1993,Chicago Bulls,Michael Jordan,5.5,2.8,0.8,.352,2.9,.514,22.7,39.3,17.2
+1993,Chicago Bulls,Scottie Pippen,6.3,2.1,0.9,.237,1.1,.491,15.2,38.6,8.6
+1993,Chicago Bulls,Horace Grant,2.6,1.2,1.2,.200,0.1,.510,10.7,35.6,9.1
+1993,Chicago Bulls,B.J. Armstrong,4.0,0.8,0.1,.453,1.7,.508,8.3,30.4,7.5
+1993,Chicago Bulls,Bill Cartwright,1.3,0.3,0.2,None,0.0,.411,5.4,19.9,1.2
+1992,Chicago Bulls,Michael Jordan,6.1,2.3,0.9,.270,1.3,.533,21.5,38.8,17.7
+1992,Chicago Bulls,Scottie Pippen,7.0,1.9,1.1,.200,1.0,.525,15.6,38.6,12.7
+1992,Chicago Bulls,Horace Grant,2.7,1.2,1.6,.000,0.0,.580,9.7,35.3,14.1
+1992,Chicago Bulls,John Paxson,3.1,0.6,0.1,.273,0.6,.553,5.6,24.6,4.7
+1992,Chicago Bulls,Bill Cartwright,1.4,0.3,0.2,None,0.0,.467,7.0,23.0,2.5
+1991,Chicago Bulls,Michael Jordan,5.5,2.7,1.0,.312,1.1,.551,21.3,37.0,20.3
+1991,Chicago Bulls,Scottie Pippen,6.2,2.4,1.1,.309,0.8,.534,13.2,36.8,11.2
+1991,Chicago Bulls,Horace Grant,2.3,1.2,0.9,.167,0.1,.550,9.3,33.9,10.3
+1991,Chicago Bulls,Bill Cartwright,1.6,0.4,0.2,None,0.0,.490,8.2,28.8,4.2
+1991,Chicago Bulls,John Paxson,3.6,0.8,0.0,.438,1.2,.571,5.9,24.0,5.7
+1990,Detroit Pistons,Isiah Thomas,9.4,1.7,0.2,.309,1.7,.453,14.6,37.0,6.7
+1990,Detroit Pistons,Joe Dumars,4.9,0.8,0.0,.400,0.7,.485,13.4,34.4,8.7
+1990,Detroit Pistons,Bill Laimbeer,2.1,0.7,1.0,.361,2.0,.515,7.7,33.0,10.1
+1990,Detroit Pistons,Dennis Rodman,0.9,0.6,0.7,.111,0.1,.589,5.9,29.0,9.3
+1990,Detroit Pistons,James Edwards,0.8,0.3,0.5,.000,0.0,.499,11.3,27.8,5.6
+1989,Detroit Pistons,Isiah Thomas,8.3,1.7,0.3,.273,1.5,.485,13.8,36.6,7.0
+1989,Detroit Pistons,Joe Dumars,5.7,0.9,0.1,.483,0.4,.506,12.7,34.9,7.0
+1989,Detroit Pistons,Bill Laimbeer,2.2,0.6,1.2,.349,1.1,.515,10.0,32.6,9.0
+1989,Detroit Pistons,Adrian Dantley,2.2,0.5,0.1,None,0.0,.521,11.8,31.9,5.3
+1989,Detroit Pistons,Mark Aguirre,2.5,0.4,0.2,.293,2.1,.522,10.2,29.7,2.8
+1988,Los Angeles Lakers,Byron Scott,4.1,1.9,0.3,.346,2.2,.554,14.4,37.6,10.7
+1988,Los Angeles Lakers,Magic Johnson,11.9,1.6,0.2,.196,0.8,.510,13.1,36.6,10.9
+1988,Los Angeles Lakers,James Worthy,3.9,1.0,0.7,.125,0.2,.537,15.3,35.4,7.9
+1988,Los Angeles Lakers,A.C. Green,1.1,1.1,0.5,.000,0.0,.505,7.8,32.1,7.9
+1988,Los Angeles Lakers,Michael Cooper,4.7,1.1,0.4,.320,2.9,.434,5.0,29.4,3.1
+1987,Los Angeles Lakers,Magic Johnson,12.2,1.7,0.5,.205,0.5,.532,15.9,36.3,15.9
+1987,Los Angeles Lakers,James Worthy,2.8,1.3,1.0,.000,0.2,.545,14.6,34.4,9.3
+1987,Los Angeles Lakers,Byron Scott,3.4,1.5,0.2,.436,1.8,.496,12.0,33.3,7.7
+1987,Los Angeles Lakers,Kareem Abdul-Jabbar,2.6,0.6,1.2,.333,0.0,.565,12.7,31.3,7.5
+1987,Los Angeles Lakers,A.C. Green,1.1,0.9,1.0,.000,0.1,.543,7.4,28.4,7.6
+1986,Boston Celtics,Larry Bird,6.8,2.0,0.6,.423,2.4,.506,17.2,38.0,15.8
+1986,Boston Celtics,Kevin McHale,2.7,0.4,2.0,None,0.0,.574,14.4,35.3,11.0
+1986,Boston Celtics,Dennis Johnson,5.8,1.4,0.4,.143,0.5,.468,13.1,35.0,6.7
+1986,Boston Celtics,Robert Parish,1.8,0.8,1.4,None,0.0,.549,11.9,31.7,9.2
+1986,Boston Celtics,Danny Ainge,5.1,1.2,0.1,.356,0.9,.521,7.9,30.1,6.8
+1985,Los Angeles Lakers,Magic Johnson,12.6,1.5,0.3,.189,0.5,.577,11.2,36.1,12.7
+1985,Los Angeles Lakers,James Worthy,2.5,1.1,0.8,.000,0.1,.576,13.2,33.7,7.5
+1985,Los Angeles Lakers,Kareem Abdul-Jabbar,3.2,0.8,2.1,.000,0.0,.600,15.3,33.3,11.2
+1985,Los Angeles Lakers,Byron Scott,3.0,1.2,0.2,.433,0.7,.546,11.6,28.5,6.9
+1985,Los Angeles Lakers,Michael Cooper,5.2,1.1,0.6,.285,1.5,.513,5.7,26.7,4.6
+1984,Boston Celtics,Larry Bird,6.6,1.8,0.9,.247,0.9,.504,18.6,38.3,13.6
+1984,Boston Celtics,Robert Parish,1.7,0.7,1.5,None,0.0,.546,14.3,35.8,10.5
+1984,Boston Celtics,Dennis Johnson,4.2,1.2,0.7,.125,0.4,.449,10.6,33.3,5.7
+1984,Boston Celtics,Kevin McHale,1.3,0.3,1.5,.333,0.0,.557,12.8,31.4,10.5
+1984,Boston Celtics,Cedric Maxwell,2.6,0.8,0.3,.167,0.1,.536,7.4,31.3,6.4
+1983,Philadelphia 76ers,Moses Malone,1.3,1.1,2.0,.000,0.0,.502,16.7,37.5,15.1
+1983,Philadelphia 76ers,Julius Erving,3.7,1.6,1.8,.286,0.1,.518,16.2,33.6,10.9
+1983,Philadelphia 76ers,Maurice Cheeks,6.9,2.3,0.4,.167,0.1,.545,9.4,31.2,9.4
+1983,Philadelphia 76ers,Andrew Toney,4.5,1.0,0.2,.289,0.9,.514,14.5,30.5,7.3
+1983,Philadelphia 76ers,Bobby Jones,1.9,1.1,1.2,.000,0.0,.545,6.2,23.6,6.4
+1982,Los Angeles Lakers,Magic Johnson,9.5,2.7,0.4,.207,0.4,.546,12.9,38.3,12.9
+1982,Los Angeles Lakers,Norm Nixon,8.0,1.6,0.1,.250,0.1,.495,15.4,36.9,6.6
+1982,Los Angeles Lakers,Jamaal Wilkes,1.7,1.1,0.3,.000,0.0,.527,17.2,35.4,7.7
+1982,Los Angeles Lakers,Kareem Abdul-Jabbar,3.0,0.8,2.7,.000,0.0,.580,17.1,35.2,10.7
+1982,Los Angeles Lakers,Mitch Kupchak,1.3,0.5,0.4,None,0.0,.573,10.3,31.6,2.4
+1981,Boston Celtics,Larry Bird,5.5,2.0,0.8,.270,0.9,.489,17.4,39.5,10.8
+1981,Boston Celtics,Tiny Archibald,7.7,0.9,0.2,.000,0.1,.505,9.5,35.3,6.9
+1981,Boston Celtics,Cedric Maxwell,2.7,1.0,0.8,.000,0.0,.589,9.2,33.7,11.0
+1981,Boston Celtics,Chris Ford,3.6,1.2,0.3,.330,1.3,.465,7.3,33.2,3.7
+1981,Boston Celtics,Robert Parish,1.8,1.0,2.6,.000,0.0,.545,14.2,28.0,10.9
+1980,Los Angeles Lakers,Norm Nixon,7.8,1.8,0.2,.125,0.1,.519,14.6,39.3,6.7
+1980,Los Angeles Lakers,Kareem Abdul-Jabbar,4.5,1.0,3.4,.000,0.0,.604,16.9,38.3,14.8
+1980,Los Angeles Lakers,Jamaal Wilkes,3.0,1.6,0.3,.176,0.2,.539,16.4,37.9,10.0
+1980,Los Angeles Lakers,Magic Johnson,7.3,2.4,0.5,.226,0.4,.540,11.9,36.3,10.5
+1980,Los Angeles Lakers,Jim Chones,1.8,0.7,0.8,.000,0.0,.491,9.2,29.2,3.5
+1979,Seattle SuperSonics,Jack Sikma,3.2,1.0,0.8,None,None,.460,12.6,36.1,8.8
+1979,Seattle SuperSonics,Dennis Johnson,3.5,1.3,1.2,None,None,.434,13.9,34.0,6.6
+1979,Seattle SuperSonics,Gus Williams,4.0,2.1,0.4,None,None,.495,16.1,29.8,8.3
+1979,Seattle SuperSonics,John Johnson,4.4,0.7,0.3,None,None,.434,10.0,29.1,2.7
+1979,Seattle SuperSonics,Lonnie Shelton,1.4,1.0,1.0,None,None,.519,11.3,28.4,5.1
+1978,Washington Bullets,Elvin Hayes,1.8,1.2,2.0,None,None,.451,17.4,40.1,8.3
+1978,Washington Bullets,Bob Dandridge,3.8,1.3,0.6,None,None,.471,15.9,37.0,6.8
+1978,Washington Bullets,Wes Unseld,4.1,1.2,0.6,None,None,.523,6.1,33.1,6.8
+1978,Washington Bullets,Tom Henderson,5.4,1.2,0.2,None,None,.432,10.5,30.9,3.1
+1978,Washington Bullets,Mitch Kupchak,1.1,0.4,0.6,None,None,.512,11.5,26.3,4.9
+1977,Portland Trail Blazers,Maurice Lucas,2.9,1.1,0.7,None,None,.466,17.2,36.2,8.7
+1977,Portland Trail Blazers,Bill Walton,3.8,1.0,3.2,None,None,.528,14.3,34.8,10.2
+1977,Portland Trail Blazers,Lionel Hollins,4.1,2.2,0.5,None,None,.432,13.8,29.3,4.0
+1977,Portland Trail Blazers,Bob Gross,3.0,1.3,0.7,None,None,.529,8.7,27.2,7.4
+1977,Portland Trail Blazers,Dave Twardzik,3.3,1.7,0.2,None,None,.612,5.8,26.2,7.5
+1976,Boston Celtics,Dave Cowens,4.2,1.2,0.9,None,None,.468,16.7,39.8,10.7
+1976,Boston Celtics,Jo Jo White,5.4,1.3,0.2,None,None,.449,18.2,39.7,7.4
+1976,Boston Celtics,Charlie Scott,4.2,1.3,0.3,None,None,.449,16.0,35.5,6.4
+1976,Boston Celtics,John Havlicek,3.7,1.3,0.4,None,None,.450,14.8,34.2,7.4
+1976,Boston Celtics,Paul Silas,2.5,0.7,0.4,None,None,.426,9.1,32.9,7.2
+1976,New York Nets,Julius Erving,5.0,2.5,1.9,.330,1.2,.517,21.1,38.6,17.7
+1976,New York Nets,Brian Taylor,3.8,2.3,0.4,.421,1.4,.497,12.0,32.1,4.8
+1976,New York Nets,John Williamson,2.5,1.0,0.4,.190,0.6,.460,14.6,29.7,2.8
+1976,New York Nets,Rich Jones,1.6,1.0,0.3,.224,0.8,.392,13.1,29.2,1.5
+1976,New York Nets,Kim Hughes,0.7,1.2,1.4,None,0.0,.530,6.7,25.7,6.8
+1975,Golden State Warriors,Rick Barry,6.2,2.9,0.4,None,None,.464,27.7,40.4,12.7
+1975,Golden State Warriors,Butch Beard,4.2,1.6,0.1,None,None,.528,9.4,30.7,7.6
+1975,Golden State Warriors,Jamaal Wilkes,2.2,1.3,0.3,None,None,.442,13.8,30.7,5.1
+1975,Golden State Warriors,Clifford Ray,2.2,1.2,1.4,None,None,.522,7.0,30.7,6.7
+1975,Golden State Warriors,Charles Johnson,2.9,1.7,0.1,None,None,.412,12.1,27.5,2.4
+1975,Kentucky Colonels,Artis Gilmore,2.5,0.8,3.1,.500,0.0,.580,16.1,41.6,16.2
+1975,Kentucky Colonels,Louie Dampier,5.4,1.1,0.6,.396,1.2,.510,13.2,34.7,10.1
+1975,Kentucky Colonels,Dan Issel,2.3,0.9,0.6,.000,0.1,.473,15.6,34.5,9.3
+1975,Kentucky Colonels,Wil Jones,3.0,1.3,0.8,.000,0.1,.486,11.2,32.0,6.9
+1975,Kentucky Colonels,Ted McClain,5.1,1.8,0.2,.125,0.1,.444,8.0,27.4,4.1
+1974,Boston Celtics,Dave Cowens,4.4,1.2,1.3,None,None,.437,18.4,41.9,9.3
+1974,Boston Celtics,John Havlicek,5.9,1.3,0.4,None,None,.456,19.8,40.7,9.7
+1974,Boston Celtics,Jo Jo White,5.5,1.3,0.3,None,None,.449,17.6,39.5,7.3
+1974,Boston Celtics,Paul Silas,2.3,0.8,0.2,None,None,.440,9.4,31.7,7.7
+1974,Boston Celtics,Don Chaney,2.2,1.0,0.8,None,None,.464,9.3,27.9,5.8
+1974,New York Nets,Julius Erving,5.2,2.3,2.4,.395,0.5,.515,20.7,40.5,16.5
+1974,New York Nets,Larry Kenon,1.3,0.9,0.2,.000,0.0,.463,15.2,34.6,5.9
+1974,New York Nets,Billy Paultz,2.2,0.8,1.9,.000,0.0,.494,13.6,33.7,8.9
+1974,New York Nets,Brian Taylor,4.5,2.1,0.3,.276,0.4,.484,9.8,33.4,5.3
+1974,New York Nets,John Williamson,3.2,1.1,0.4,.182,0.1,.494,12.6,29.4,4.2
+1973,New York Knicks,Walt Frazier,5.9,None,None,None,None,.490,17.8,40.8,13.0
+1973,New York Knicks,Dave DeBusschere,3.4,None,None,None,None,.435,15.9,36.7,6.6
+1973,New York Knicks,Bill Bradley,4.5,None,None,None,None,.459,15.3,36.6,7.0
+1973,New York Knicks,Earl Monroe,3.8,None,None,None,None,.488,13.5,31.6,7.8
+1973,New York Knicks,Jerry Lucas,4.5,None,None,None,None,.513,8.6,28.2,7.8
+1973,Indiana Pacers,George McGinnis,2.5,2.0,None,.250,0.4,.499,21.0,40.8,11.4
+1973,Indiana Pacers,Mel Daniels,2.2,None,1.9,.250,0.0,.483,15.0,38.3,9.2
+1973,Indiana Pacers,Freddie Lewis,4.0,None,None,.345,1.5,.449,10.4,30.8,5.2
+1973,Indiana Pacers,Darnell Hillman,1.5,None,1.4,.000,0.1,.452,8.6,30.3,3.3
+1973,Indiana Pacers,Roger Brown,2.8,None,None,.356,1.6,.498,8.1,30.2,6.1
+1972,Los Angeles Lakers,Wilt Chamberlain,4.0,None,None,None,None,.649,9.3,42.3,15.8
+1972,Los Angeles Lakers,Jerry West,9.7,None,None,None,None,.477,20.0,38.6,13.3
+1972,Los Angeles Lakers,Jim McMillian,2.6,None,None,None,None,.482,16.6,38.1,7.8
+1972,Los Angeles Lakers,Gail Goodrich,4.5,None,None,None,None,.487,20.7,37.1,12.3
+1972,Los Angeles Lakers,Happy Hairston,2.4,None,None,None,None,.461,10.0,34.4,9.2
+1972,Indiana Pacers,Roger Brown,3.9,None,None,.308,2.4,.512,11.9,38.3,9.3
+1972,Indiana Pacers,Mel Daniels,2.2,None,None,.000,0.1,.508,14.9,37.6,10.3
+1972,Indiana Pacers,Freddie Lewis,4.7,None,None,.310,1.3,.442,11.0,35.2,6.2
+1972,Indiana Pacers,Bob Netolicky,1.0,None,None,.211,0.2,.484,12.9,35.0,5.6
+1972,Indiana Pacers,George McGinnis,1.9,None,None,.158,0.5,.478,13.2,29.8,5.3
+1971,Milwaukee Bucks,Kareem Abdul-Jabbar,3.3,None,None,None,None,.577,22.5,40.1,22.3
+1971,Milwaukee Bucks,Oscar Robertson,8.2,None,None,None,None,.496,14.7,39.4,12.4
+1971,Milwaukee Bucks,Bob Dandridge,3.5,None,None,None,None,.509,14.8,36.2,9.5
+1971,Milwaukee Bucks,Jon McGlocklin,3.7,None,None,None,None,.535,13.1,35.3,8.9
+1971,Milwaukee Bucks,Greg Smith,2.8,None,None,None,None,.512,9.7,29.6,6.8
+1971,Utah Stars,Zelmo Beaty,1.9,None,None,.500,0.1,.555,15.6,38.4,16.0
+1971,Utah Stars,Red Robbins,2.2,None,None,.250,0.5,.446,10.5,36.5,6.9
+1971,Utah Stars,Glen Combs,3.9,None,None,.383,1.8,.464,13.7,36.3,5.3
+1971,Utah Stars,Donnie Freeman,4.9,None,None,.000,0.2,.483,17.7,33.4,3.5
+1971,Utah Stars,Willie Wise,2.5,None,None,.294,0.2,.466,12.7,32.6,7.5
+1970,New York Knicks,Walt Frazier,8.2,None,None,None,None,.518,15.0,39.5,15.0
+1970,New York Knicks,Willis Reed,2.0,None,None,None,None,.507,17.1,38.1,14.6
+1970,New York Knicks,Dick Barnett,3.6,None,None,None,None,.475,12.7,33.8,6.8
+1970,New York Knicks,Dave DeBusschere,2.5,None,None,None,None,.451,13.7,33.3,6.6
+1970,New York Knicks,Bill Bradley,4.0,None,None,None,None,.460,13.4,31.3,4.9
+1970,Indiana Pacers,Roger Brown,4.7,None,None,.333,1.4,.513,15.8,41.6,13.3
+1970,Indiana Pacers,Bob Netolicky,1.5,None,None,.286,0.1,.484,16.9,39.3,8.2
+1970,Indiana Pacers,Mel Daniels,1.6,None,None,.000,0.0,.474,15.6,36.6,8.6
+1970,Indiana Pacers,Freddie Lewis,3.6,None,None,.266,2.2,.452,11.0,35.5,6.0
+1970,Indiana Pacers,John Barnhill,4.1,None,None,.261,3.5,.460,7.2,30.8,2.5
+1969,Boston Celtics,Bill Russell,4.9,None,None,None,None,.433,8.4,42.7,10.9
+1969,Boston Celtics,John Havlicek,5.4,None,None,None,None,.405,20.8,38.7,7.3
+1969,Boston Celtics,Larry Siegfried,4.7,None,None,None,None,.380,13.1,32.4,5.6
+1969,Boston Celtics,Bailey Howell,1.8,None,None,None,None,.487,16.1,32.4,11.3
+1969,Boston Celtics,Tom Sanders,1.3,None,None,None,None,.430,10.3,26.6,5.4
+1969,Oakland Oaks,Rick Barry,3.9,None,None,.300,0.3,.514,21.6,38.9,8.5
+1969,Oakland Oaks,Warren Jabali,3.5,None,None,.250,0.6,.456,17.4,35.8,5.8
+1969,Oakland Oaks,Doug Moe,2.0,None,None,.357,0.2,.432,16.2,33.7,4.8
+1969,Oakland Oaks,Larry Brown,7.1,None,None,.229,0.5,.447,8.7,30.9,5.8
+1969,Oakland Oaks,Gary Bradds,1.2,None,None,.143,0.1,.499,13.8,30.0,8.0
+1968,Boston Celtics,Bill Russell,4.6,None,None,None,None,.425,11.0,37.9,8.2
+1968,Boston Celtics,John Havlicek,4.7,None,None,None,None,.429,18.9,35.6,7.6
+1968,Boston Celtics,Bailey Howell,1.6,None,None,None,None,.481,16.3,34.2,10.1
+1968,Boston Celtics,Sam Jones,3.0,None,None,None,None,.461,18.5,33.0,7.7
+1968,Boston Celtics,Larry Siegfried,4.7,None,None,None,None,.415,10.1,31.2,5.1
+1968,Pittsburgh Pipers,Connie Hawkins,4.6,None,None,.222,0.1,.521,17.3,44.9,17.9
+1968,Pittsburgh Pipers,Art Heyman,4.4,None,None,.274,2.2,.476,12.8,39.2,8.1
+1968,Pittsburgh Pipers,Charles Williams,2.2,None,None,.287,2.3,.424,17.9,39.0,3.9
+1968,Pittsburgh Pipers,Chico Vaughn,1.9,None,None,.334,5.5,.399,12.7,38.6,4.9
+1968,Pittsburgh Pipers,Ira Harge,0.7,None,None,None,0.0,.399,8.5,31.8,2.1
+1967,Philadelphia 76ers,Wilt Chamberlain,7.8,None,None,None,None,.683,14.2,45.5,21.9
+1967,Philadelphia 76ers,Hal Greer,3.8,None,None,None,None,.459,19.1,38.6,7.6
+1967,Philadelphia 76ers,Chet Walker,2.3,None,None,None,None,.488,14.2,33.2,10.1
+1967,Philadelphia 76ers,Luke Jackson,1.4,None,None,None,None,.438,10.9,29.3,4.2
+1967,Philadelphia 76ers,Wali Jones,3.7,None,None,None,None,.431,12.1,27.8,4.0
+1966,Boston Celtics,Bill Russell,4.8,None,None,None,None,.415,12.1,43.4,11.7
+1966,Boston Celtics,K.C. Jones,6.3,None,None,None,None,.388,7.7,33.9,6.6
+1966,Boston Celtics,Sam Jones,3.2,None,None,None,None,.469,19.9,32.2,10.0
+1966,Boston Celtics,John Havlicek,3.0,None,None,None,None,.399,18.7,30.6,4.3
+1966,Boston Celtics,Tom Sanders,1.3,None,None,None,None,.428,11.3,26.3,5.5
+1965,Boston Celtics,Bill Russell,5.3,None,None,None,None,.438,12.6,44.4,16.9
+1965,Boston Celtics,Sam Jones,2.8,None,None,None,None,.452,22.7,36.1,12.8
+1965,Boston Celtics,K.C. Jones,5.6,None,None,None,None,.396,8.2,31.2,6.7
+1965,Boston Celtics,Tom Sanders,1.2,None,None,None,None,.429,10.9,30.7,7.5
+1965,Boston Celtics,John Havlicek,2.7,None,None,None,None,.401,18.9,28.9,4.5
+1964,Boston Celtics,Bill Russell,4.7,None,None,None,None,.433,13.8,44.6,17.3
+1964,Boston Celtics,John Havlicek,3.0,None,None,None,None,.417,19.2,32.3,7.7
+1964,Boston Celtics,Sam Jones,2.7,None,None,None,None,.450,17.9,31.3,8.9
+1964,Boston Celtics,K.C. Jones,5.1,None,None,None,None,.392,9.0,30.3,5.8
+1964,Boston Celtics,Tom Sanders,1.3,None,None,None,None,.417,10.5,29.6,7.6
+1963,Boston Celtics,Bill Russell,4.5,None,None,None,None,.432,15.2,44.9,13.5
+1963,Boston Celtics,Sam Jones,3.2,None,None,None,None,.476,17.2,30.6,9.6
+1963,Boston Celtics,John Havlicek,2.2,None,None,None,None,.445,13.6,27.5,6.4
+1963,Boston Celtics,Tom Sanders,1.2,None,None,None,None,.456,9.3,26.9,6.8
+1963,Boston Celtics,Tom Heinsohn,1.3,None,None,None,None,.423,17.1,26.4,6.8
+1962,Boston Celtics,Bill Russell,4.5,None,None,None,None,.457,16.6,45.2,15.5
+1962,Boston Celtics,Sam Jones,3.0,None,None,None,None,.464,16.5,30.6,9.6
+1962,Boston Celtics,Tom Heinsohn,2.1,None,None,None,None,.429,20.4,30.2,9.3
+1962,Boston Celtics,Tom Sanders,0.9,None,None,None,None,.435,10.1,29.1,7.2
+1962,Boston Celtics,Bob Cousy,7.8,None,None,None,None,.391,15.7,28.2,6.3
+1961,Boston Celtics,Bill Russell,3.4,None,None,None,None,.426,16.0,44.3,13.0
+1961,Boston Celtics,Bob Cousy,7.7,None,None,None,None,.371,18.2,32.5,7.2
+1961,Boston Celtics,Tom Heinsohn,1.9,None,None,None,None,.400,21.2,30.5,6.6
+1961,Boston Celtics,Sam Jones,2.8,None,None,None,None,.449,13.7,26.0,8.1
+1961,Boston Celtics,Frank Ramsey,1.8,None,None,None,None,.407,13.9,25.6,6.5
+1960,Boston Celtics,Bill Russell,3.7,None,None,None,None,.467,16.1,42.5,13.8
+1960,Boston Celtics,Bob Cousy,9.5,None,None,None,None,.384,19.7,34.5,7.8
+1960,Boston Celtics,Tom Heinsohn,2.3,None,None,None,None,.423,21.2,32.3,7.7
+1960,Boston Celtics,Frank Ramsey,1.9,None,None,None,None,.397,14.5,27.5,5.3
+1960,Boston Celtics,Bill Sharman,2.0,None,None,None,None,.456,17.3,27.0,7.9
+1959,Boston Celtics,Bill Russell,3.2,None,None,None,None,.457,14.2,42.6,12.9
+1959,Boston Celtics,Bob Cousy,8.6,None,None,None,None,.384,19.4,37.0,8.7
+1959,Boston Celtics,Bill Sharman,2.5,None,None,None,None,.408,19.1,33.1,7.6
+1959,Boston Celtics,Tom Heinsohn,2.5,None,None,None,None,.390,18.1,31.7,6.5
+1959,Boston Celtics,Frank Ramsey,2.0,None,None,None,None,.378,14.1,28.0,5.9
+1958,St. Louis Hawks,Bob Pettit,2.2,None,None,None,None,.410,20.3,36.1,11.0
+1958,St. Louis Hawks,Slater Martin,3.6,None,None,None,None,.336,12.8,35.0,1.4
+1958,St. Louis Hawks,Cliff Hagan,2.5,None,None,None,None,.443,16.2,31.3,10.0
+1958,St. Louis Hawks,Jack McMahon,4.6,None,None,None,None,.300,10.0,31.1,-0.7
+1958,St. Louis Hawks,Ed Macauley,2.0,None,None,None,None,.428,12.2,26.5,6.3
+1957,Boston Celtics,Bob Cousy,7.5,None,None,None,None,.378,19.8,36.9,8.8
+1957,Boston Celtics,Bill Sharman,3.5,None,None,None,None,.416,18.5,35.9,10.4
+1957,Boston Celtics,Bill Russell,1.8,None,None,None,None,.427,13.5,35.3,6.2
+1957,Boston Celtics,Jim Loscutoff,1.3,None,None,None,None,.345,12.7,31.7,2.1
+1957,Boston Celtics,Tom Heinsohn,1.6,None,None,None,None,.397,15.6,29.9,7.1
+1956,Philadelphia Warriors,Jack George,6.3,None,None,None,None,.374,13.1,39.4,4.6
+1956,Philadelphia Warriors,Paul Arizin,2.6,None,None,None,None,.448,19.1,37.8,12.2
+1956,Philadelphia Warriors,Neil Johnston,3.2,None,None,None,None,.457,15.6,37.1,13.9
+1956,Philadelphia Warriors,Tom Gola,5.9,None,None,None,None,.412,8.7,34.5,6.5
+1956,Philadelphia Warriors,Joe Graboski,2.6,None,None,None,None,.369,14.9,33.0,2.0
+1955,Syracuse Nationals,Paul Seymour,6.7,None,None,None,None,.362,14.4,41.0,6.7
+1955,Syracuse Nationals,Dolph Schayes,3.0,None,None,None,None,.383,15.3,35.1,12.0
+1955,Syracuse Nationals,Red Rocha,2.5,None,None,None,None,.368,11.1,34.3,5.0
+1955,Syracuse Nationals,Earl Lloyd,2.1,None,None,None,None,.365,10.9,30.7,3.6
+1955,Syracuse Nationals,George King,4.9,None,None,None,None,.377,9.0,30.1,3.8
+1954,Minneapolis Lakers,Slater Martin,3.7,None,None,None,None,.388,9.5,35.8,6.1
+1954,Minneapolis Lakers,Jim Pollard,3.0,None,None,None,None,.370,12.4,35.0,5.7
+1954,Minneapolis Lakers,George Mikan,2.4,None,None,None,None,.380,16.1,32.8,12.7
+1954,Minneapolis Lakers,Vern Mikkelsen,1.7,None,None,None,None,.374,10.7,31.2,6.6
+1954,Minneapolis Lakers,Whitey Skoog,2.5,None,None,None,None,.400,7.5,26.4,4.1
+1953,Minneapolis Lakers,George Mikan,2.9,None,None,None,None,.399,17.9,37.9,14.6
+1953,Minneapolis Lakers,Slater Martin,3.6,None,None,None,None,.410,9.1,36.5,8.2
+1953,Minneapolis Lakers,Jim Pollard,3.5,None,None,None,None,.357,14.1,36.4,4.6
+1953,Minneapolis Lakers,Vern Mikkelsen,2.1,None,None,None,None,.435,12.4,35.2,12.0
+1953,Minneapolis Lakers,Pep Saul,1.6,None,None,None,None,.397,6.7,25.7,4.2
+1952,Minneapolis Lakers,George Mikan,3.0,None,None,None,None,.385,22.1,40.2,14.4
+1952,Minneapolis Lakers,Jim Pollard,3.6,None,None,None,None,.356,17.8,39.2,5.7
+1952,Minneapolis Lakers,Slater Martin,3.8,None,None,None,None,.375,9.6,37.6,6.3
+1952,Minneapolis Lakers,Vern Mikkelsen,2.7,None,None,None,None,.419,13.1,35.5,13.2
+1952,Minneapolis Lakers,Whitey Skoog,1.7,None,None,None,None,.345,8.5,28.2,1.0
+1951,Rochester Royals,Bobby Wanzer,2.7,None,None,None,None,.401,9.2,None,6.9
+1951,Rochester Royals,Jack Coleman,2.9,None,None,None,None,.421,11.2,None,6.5
+1951,Rochester Royals,Bob Davies,4.6,None,None,None,None,.372,13.9,None,6.9
+1951,Rochester Royals,Red Holzman,2.2,None,None,None,None,.326,8.3,None,0.8
+1951,Rochester Royals,Arnie Johnson,2.6,None,None,None,None,.459,5.9,None,9.1
+1950,Minneapolis Lakers,Paul Walther,0.5,None,None,None,None,.400,3.6,None,0.8
+1950,Minneapolis Lakers,Arnie Ferrin,1.5,None,None,None,None,.333,6.3,None,2.6
+1950,Minneapolis Lakers,Normie Glick,0.0,None,None,None,None,1.000,1.0,None,0.1
+1950,Minneapolis Lakers,Bud Grant,0.5,None,None,None,None,.365,3.3,None,0.5
+1950,Minneapolis Lakers,Bob Harrison,2.0,None,None,None,None,.359,5.3,None,3.5
+1949,Minneapolis Lakers,Jack Tingle,0.5,None,None,None,None,.167,3.0,None,-0.1
+1949,Minneapolis Lakers,Don Carlson,3.1,None,None,None,None,.334,11.5,None,2.8
+1949,Minneapolis Lakers,Jack Dwan,2.2,None,None,None,None,.318,6.3,None,1.2
+1949,Minneapolis Lakers,Ray Ellefson,0.0,None,None,None,None,.200,1.7,None,-0.1
+1949,Minneapolis Lakers,Arnie Ferrin,1.6,None,None,None,None,.344,8.0,None,2.6
+1948,Baltimore Bullets,Connie Simmons,0.5,None,None,None,None,.302,13.8,None,0.8
+1948,Baltimore Bullets,Mike Bloom,0.7,None,None,None,None,.272,13.9,None,2.4
+1948,Baltimore Bullets,Herm Fuetsch,0.4,None,None,None,None,.300,3.3,None,0.9
+1948,Baltimore Bullets,Elmer Gainer,0.6,None,None,None,None,.111,1.8,None,0.0
+1948,Baltimore Bullets,Kleggie Hermsen,1.0,None,None,None,None,.277,15.9,None,2.9
+1947,Philadelphia Warriors,Fred Sheffield,0.2,None,None,None,None,.199,6.6,None,-0.5
+1947,Philadelphia Warriors,Jerry Fleishman,0.7,None,None,None,None,.261,6.3,None,2.1
+1947,Philadelphia Warriors,Joe Fulks,0.4,None,None,None,None,.305,26.0,None,16.3
+1947,Philadelphia Warriors,Matt Guokas,0.2,None,None,None,None,.269,2.2,None,1.1
+1947,Philadelphia Warriors,Art Hillhouse,0.7,None,None,None,None,.291,6.9,None,5.4
