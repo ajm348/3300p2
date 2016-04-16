@@ -11,7 +11,7 @@ champions_table = champions_soup.find('table', attrs={'class': 'stats_table'})
 #find all the rows (trs) in the table
 champions_rows = champions_table.findChildren(["tr"])
 #header row for eventual printing stuff
-print "Team,Year,3PA,3P%,2PA,2P%,O3PA,O3P%,O2PA,O2P%"
+print "Year,Team,3PA,3P%,2PA,2P%,O3PA,O3P%,O2PA,O2P%"
 for row in champions_rows:
 	#cells are all the tds; thus, you can think of a table as a 2d array with rows and cells within the rows
 	#beautiful soup turns each of these into an array by virtue of the findChildren command
@@ -31,8 +31,8 @@ for row in champions_rows:
 		team_cells = champion_rows[1].findChildren('td')
 		opponent_cells = champion_rows[6].findChildren('td')
 		#the comma after each print keeps it from printing a new line
-		print cells[2].string,",",
 		print cells[0].string,",",
+		print cells[2].string,",",
 		print team_cells[7].string,",",
 		print team_cells[8].string,",",
 		print team_cells[10].string,",",
