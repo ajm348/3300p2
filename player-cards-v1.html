@@ -7,46 +7,105 @@
 <style>
 /* put a border around the svg element so we can see the coordinate system better. */
 body { font-family: "Open Sans"; } div { margin: 30px; }
-svg { background-color: white;}
+
 div {margin: 0;}
 
-.card {
-	margin: 8px;
-	width: 405px;
-	padding: 4px;
-	}
-.stats {
-	font-size: small;
-	text-align: center;
-}
-.stats td {
-	padding: 8px;
-}
-img {position: absolute;
-z-index: -1;
+#main-content-wrapper {
+	width: 90%;
+	margin: auto;
 }
 
+#playerCards-wrapper-left {
+	display: inline-block;
+	width: 45%;
+	margin: 8px;
+}
+
+/*the dropdown menu styling*/
+select {
+	width: 470px;
+	font-size: 34px;
+}
+
+.card {
+	border: solid grey 2px;
+	border-color: inherit;
+	margin: 8px 0px 8px 0px;
+	width: 450px;
+	padding: 8px;
+}
+.card:hover {
+	border-color: yellow;
+	transition-duration: 0.75s;
+}
+.player-stats{
+	margin-top: 3em;
+}
+.stats {
+	margin-left: 12px;
+	font-size: 15px;
+	text-align: center;
+}
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: black solid 1px;
+}
+.stats td, .stats th{
+	padding: 8px;
+	color: #aaa;
+}
+img {
+	z-index: -2;
+	width: 140px;
+}
+.player-photo {
+	position: absolute;
+	margin-left: 20px;
+	text-align: center;
+}
+.player-bio{
+	margin-left: 180px;
+}
 .lbs {
 	font-size: small;
 }
-.yearPlaying {
-	margin-top: 2.1em;
-	margin-bottom: 0px;
-}
+	
 .card h1 {
-	margin-left: 80px;
 	display: inline-block;
-	font-size: 22px}
+	font-size: 26px}
 .card ul {
-	font-size: 14px;
+	font-size: 16px;
 	list-style: none;
-	margin-top: -18px;
-	margin-left: 85px;
+	margin-top: -14px;
 }
-.playerPhoto{display: inline-block;}
+.card p {
+	margin-left: 20px;
+}
+.position {
+	margin-left: 14px;
+	
+}
+
+.last {
+	font-size: 20px;
+}
 
 
+/*right side players*/
+#playerCards-wrapper-right {
+	display: inline-block;
+	position: absolute;
+	width: 45%;
+	margin: 8px;
+}
 
+/*back of the card*/
+.back {
+	display: none;
+}
 </style>
 <title>Project 2</title>
 </head>
@@ -56,8 +115,10 @@ z-index: -1;
 
 <div>Data from <a href="http://basketball-reference.com">basketball-reference.com</a>.</div>
 
-<!-- The SVG element will go in here-->
-<div id="playerCards-wrapper"></div>
+<div id="main-content-wrapper">
+<div id="playerCards-wrapper-left"></div>
+<div id="playerCards-wrapper-right"></div>
+</div>
 <script>
 
 var nbaColors = [{"team":"Atlanta Hawks",  "first": "#01244C", "third": "#D21033"},
@@ -93,89 +154,76 @@ var nbaColors = [{"team":"Atlanta Hawks",  "first": "#01244C", "third": "#D21033
 ]
 
 $( document ).ready(function() {
-	$("#playerCards-wrapper").append("<select id='years' onchange='createTeamCards()'></select><div id='playerCards'></div>");
+	
+	
+	$("#playerCards-wrapper-left").append("<select id='years1' onchange='createTeamCards(1)'></select><div id='playerCards1'></div>");
+	$("#playerCards-wrapper-right").append("<select id='years2' onchange='createTeamCards(2)'></select><div id='playerCards2'></div>");
 	for (var value=2015; value>1979;value--){
-		$("#years").append("<option value='"+value+"'>"+(value-1)+"-"+value+"</option>");
+		$("#years1").append("<option value='"+value+"'>"+(value-1)+" - "+value+"</option>");
+		$("#years2").append("<option value='"+value+"'>"+(value-1)+" - "+value+"</option>");
 	}
-	createTeamCards();
+	createTeamCards(1);
+	createTeamCards(2);
 });
 
 var Year;
 //get the 5 players from the csv file and then create cards for them
-function createTeamCards(){
-	var inputYear = $("#years").val();
+function createTeamCards(leftOrRight){
+	var inputYear = $("#years"+leftOrRight).val();
 	Year = inputYear-1 +"-"+inputYear;
 	d3.csv("championship_players_data.csv", function (error, rows) {	
 		if (error) {console.log(error);}
 		playersStats = d3.map(rows, function (player) { return player.Player; });
 		//console.log(rows);
-		$("#playerCards").empty();
+		$("#playerCards"+leftOrRight).empty();
+		var teamList;
 		for (var i=0; i<rows.length; i++){
 			if (rows[i].Year == inputYear) {
-				console.log(rows[i])
-				createCard(rows[i]);
+				//console.log(rows[i])
+				createCard(rows[i], leftOrRight);
 			}
 		}
 	});
 }
 
 //creating cards for the players.
-function createCard(player){
+function createCard(player, leftorRight){
 	//console.log(player);
-	$("#playerCards").append("<div class='card' id="+player.id+"> </div>");
-	console.log("#"+player.id);
-	$("#"+player.id).append("<div class='card-wrapper'> <div class='player-shadows'> <div class='shadow-right'></div> <div class='shadow-left'></div> </div> <div class='card-content'> <div class='team-logo'></div> <div class='player-photo'> <img src='assets/img/"+player.picture_url+"' alt='"+player.Player+" Photo'></div> <span class='playerNumber'>#"+player.Number+" </span><h1>"+player.Player+" <span class='position'>"+player.Position+"</span></h1> <div class='player-bio'> <ul class='general-info'> <li class='first'>"+player.Height+", "+player.Weight+"<span class='lbs'>lbs</span></li> <li class='last'>"+player.Team+"</li></ul></div> <div class='player-stats'> <p class='yearPlaying'>"+Year+" Season</p> <table class='stats'> <thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>Steals</th><th>3pt%</th><th>3ptA</th><th>Per</th></tr></thead> <tbody> <tr><td>"+player.MP+"</td><td>"+player.PTS+"</td><td>"+player.ast+"</td><td>"+player.TRB+"</td><td>"+player.stl+"</td><td>"+player['p3%']+"</td><td>"+player['p3A']+"</td><td>"+player.per+"</td></tr></tbody> </table> </div> </div> <div class='header-bg'></div> </div>");
+	$("#playerCards"+leftorRight).append("<div class='card' id="+player.id+leftorRight+" onclick='flip("+player.id+leftorRight+")'> </div>");
+	$("#"+player.id+leftorRight).append("<div class='card-wrapper'> <div class='card-content'> <div class='team-logo'></div> <div class='player-photo'>  <img src='assets/img/"+player.picture_url+"' alt='"+player.Player+" Photo'></div><div class='player-bio'> <h1><span class='playerNumber"+leftorRight+"'>#"+player.Number+" </span>"+player.Player+"</h1><ul class='general-info'> <li class='first'>"+player.Height+", "+player.Weight+"<span class='lbs'>lbs</span> <span class='position'>"+player.Position+"</span></li> <li class='last'>"+player.Team+"</li></ul></div> <div class='player-stats'> <p class='yearPlaying'>"+Year+" Season</p> <table class='stats'><thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>SPG</th><th>3%</th><th>3A</th><th>WS</th></tr></thead> <tbody> <tr><td>"+player.MP+"</td><td>"+player.PTS+"</td><td>"+player.ast+"</td><td>"+player.TRB+"</td><td>"+player.stl+"</td><td>"+(player['p3%']*100).toFixed(1)+"%</td><td>"+player['p3A']+"</td><td>"+player.WS+"</td></tr></tbody></table></div></div></div>");
+	
+	//the player vs the position average that year
+	$("#"+player.id+leftorRight).append("<div class='back' id=back"+player.id+leftorRight+"><h1>THIS IS THE PLAYER STATS VS THE league THAT YEAR</h1></div>");
+	
 	var teamColors;
 	console.log(player.Team);
 	for (var k=0; k<nbaColors.length; k++){
 		//console.log(nbaColors[k].team);
 		if (nbaColors[k].team == player.Team) {
 			teamColors = nbaColors[k];
-			$("#"+player.id).css("color", teamColors.second);
+			$("#"+player.id+leftorRight).css("color", teamColors.second);
+			$(".position"+leftorRight).css("color", teamColors.first);
+			$(".playerNumber"+leftorRight).css("color", teamColors.first);
+			if (teamColors.team == "Houston Rockets" || teamColors.team == "Boston Celtics"
+			    || teamColors.team == "Dallas Mavericks") {
+				$("#"+player.id+leftorRight).css("color","#aaa");
+			}
 			$(".position").css("color", teamColors.first);
 		}
 	}
 	
 }
-</script>
-<!--
-<div class='card-wrapper'>
-	<div class='player-shadows'>
-		<div class='shadow-right'></div>
-		<div class='shadow-left'></div>
-	</div>
-	<div class='card-content'>
-		<div class='team-logo'></div>
-		<div class='player-photo'>
-			<img style='width: 100px;'src='http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/3975.png&amp;w=350&amp;h=254' alt='player.Player'></div>
-		<h1>"+player.Player+"</h1>
-		<div class='player-bio'>
-			<ul class='general-info'>
-				<li class='first'>"+player.Number+"</li>
-				<li>"+player.Height+", "+player.Weight+"</li>
-				<li class='last'>"+player.Team+"</li></ul>
-			<!--<ul class='player-metadata'>
-				<li><span>Born</span>Mar 14, 1988 in Akron, OH (Age: 28)</li>
-				<li><span>Drafted</span>2009: 1st Rnd, 7th by GS</li>
-				<li><span>College</span>Davidson</li>
-				<li><span>Experience</span>6 years</li>
-			</ul>--
-		</div>
-		<div class='player-stats'>
-			<p>204-2015</p>
-			<table class='stats'>
-				<thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>Steals</th><th>3pt%</th><th>3pt Attempts</th><th>Per</th></tr></thead>
-				<tbody>
-					<tr><td>"+player.MP+"</td><td>"+player.PPG+"</td><td>"+player.ast+"</td><td>"+player.reb+"</td><td>"+player.stl+"</td><td>"+player.3pt%+"</td><td>"+player.3ptA+"</td><td>"+player.per+"</td></tr>
-					<!--<tr class='title'><td colspan='9'><p>Career</p></td></tr>
-					<tr class='career'><td>22.4</td><td>6.9</td><td>4.3</td></tr>--
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class='header-bg'></div>
-</div>-->
 
+//flip to the back of the card
+function flip(divID) {
+	
+	var height = $("#"+divID).height();
+	$("#"+divID).height(height);
+	
+	$("#"+divID).children().fadeToggle();
+}
+
+</script>
 
 </body>
 </html>
