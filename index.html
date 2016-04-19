@@ -1,0 +1,203 @@
+<html>
+<head>	
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<style>
+	.axis path,
+	.axis line {
+	    fill: none;
+	    stroke: black;
+	    shape-rendering: crispEdges;
+	}
+	.axis text {
+	    font-family: sans-serif;
+	    font-size: 7px;
+	}
+	svg {
+		border: 1px solid blue;
+	}
+</style>
+
+</head>
+
+<body>
+<div id="lineGraph">
+
+<form>
+  <input type="radio" name="threePoints" value="TPP" onclick="updateData()" checked> 3P%<br>
+  <input type="radio" name="threePoints" value="TPA" onclick="updateData(value)"> 3PA<br>
+</form>
+<label class="switch">
+  <input type="checkbox">League Average
+  <div class="slider"></div>
+</label>
+</div>
+
+
+<script type="text/javascript">
+
+	var isPercent = true;
+
+	var lgHeight = 800;
+	var lgWidth = 1000;
+	var axesOffset = 100;
+	var champYear = []
+	var champTeam = []
+	var threeAttempts = []
+	var threePercent = []
+
+
+
+	var svg = d3.select("#lineGraph").append("svg")
+	.attr("width", lgWidth)
+	.attr("height", lgHeight);
+
+	var xScale = d3.scale.linear()
+				.domain([1980,2015])
+				.range([0,lgWidth - axesOffset]);
+
+	// var yScale3pta = d3.scale.linear()
+	// 				.domain()
+	// 				.range([lgHeight,0]);
+
+	var xAxis = d3.svg.axis()
+	.scale(xScale)
+	.ticks(30)
+	.orient("bottom");
+
+	svg.append("g")
+	.attr("class", "x axis")
+	.attr("transform", "translate("+(axesOffset/2)+", " + (lgHeight - axesOffset/2)+ ")")
+	.call(xAxis);
+
+	d3.csv("p2sampledata.csv", function(error, data){
+		
+		data.forEach(function(d){
+			if(d.Year >= 1980){
+				champYear.push(d.Year);
+				champTeam.push(d.Team);
+				threeAttempts.push(d.TPA);
+				threePercent.push(d.TPP);
+			}
+
+		})
+		console.log(Math.max.apply(Math, threePercent));
+		var y3PercentScale = d3.scale.linear()
+			.domain([0, Math.max.apply(Math, threePercent)])
+			.range([lgHeight - axesOffset, 0]);
+		var y3AttemptScale = d3.scale.linear()
+			.domain([Math.min.apply(Math, threeAttempts), Math.max.apply(Math, threeAttempts)])
+			.range([lgHeight -axesOffset, 0]);
+
+		var y3PercentAxis = d3.svg.axis()
+		.scale(y3PercentScale)
+		.ticks(50)
+		.orient("left");
+
+		var y3AttemptAxis = d3.svg.axis()
+		.scale(y3AttemptAxis)
+		.ticks(50)
+		.orient("left");
+
+		svg.append("g")
+		.attr("class", "y axis")
+		.attr("transform", "translate("+axesOffset/2+", 50)")
+		.call(y3PercentAxis);
+
+		for (i = 0; i<champYear.length; i++){
+			var image = "assets/img/" + champTeam[i] +  ".png";
+			svg.append("svg:image")
+			.attr('x', xScale(champYear[i]) + axesOffset*2/5)
+			.attr('y', y3PercentScale(threePercent[i]) + axesOffset*2/5)
+			.attr("height", 25)
+			.attr('width', 25)
+			.attr('class', 'locale')
+			.attr("xlink:href", image);
+
+
+		}
+
+
+
+
+	})
+	function updateData(category) {
+		if(category == 'TPA'){
+			isPercent = false;
+		}
+		else{
+			isPercent = true;
+		}
+
+		svg.selectAll(".locale").remove();
+		d3.csv("p2sampledata.csv", function(error, data){
+			data.forEach(function(d){
+				if(d.Year >= 1980){
+				champYear.push(d.Year);
+				champTeam.push(d.Team);
+				threeAttempts.push(d.TPA);
+				threePercent.push(d.TPP);
+				}
+			});
+
+		var y3PercentScale = d3.scale.linear()
+			.domain([Math.min.apply(Math, threePercent), Math.max.apply(Math, threePercent)])
+			.range([lgHeight - axesOffset, 0]);
+		var y3AttemptScale = d3.scale.linear()
+			.domain([0, Math.max.apply(Math, threeAttempts)])
+			.range([lgHeight -axesOffset, 0]);
+
+		var y3PercentAxis = d3.svg.axis()
+		.scale(y3PercentScale)
+		.ticks(50)
+		.orient("left");
+
+		var y3AttemptAxis = d3.svg.axis()
+		.scale(y3AttemptScale)
+		.ticks(50)
+		.orient("left");
+
+		var threeData;
+		var yScale;
+
+		if(isPercent){
+			svg.select(".y.axis").transition().duration(1500).call(y3PercentAxis);
+			threeData = threePercent;
+			yScale = y3PercentScale;
+		}
+		else{
+			svg.select(".y.axis").transition().duration(1500).call(y3AttemptAxis);
+			threeData = threeAttempts;
+			yScale = y3AttemptScale;
+		}
+
+
+
+		for (i = 0; i<champYear.length; i++){
+			var image = "assets/img/" + champTeam[i] +  ".png";
+			svg.append("svg:image")
+			.attr('x', xScale(champYear[i]) + axesOffset*2/5)
+			.attr('y', yScale(threeData[i]) + axesOffset*2/5)
+			.attr("height", 25)
+			.attr('width', 25)
+			.attr('class', 'locale')
+			.attr("xlink:href", image);
+		}
+
+
+
+		});
+
+
+
+
+
+	}
+
+</script>
+
+
+
+
+</body>
+
+</html>
