@@ -152,7 +152,7 @@
 				});
 			}
 
-				console.log(avgThreePercent);
+				//console.log(avgThreePercent);
 				var y3PercentScale = d3.scale.linear()
 					.domain([0, Math.max.apply(Math, threePercent)])
 					.range([lgHeight - axesOffset, 0]);
@@ -169,7 +169,7 @@
 				.scale(y3AttemptAxis)
 				.ticks(50)
 				.orient("left");
-console.log(champYear);
+//console.log(champYear);
 
 
 		if (isPercent){
@@ -233,7 +233,7 @@ console.log(champYear);
 			isPercent = true;
 		}
 
-		svg.selectAll(".locale").remove();
+		//svg.selectAll(".locale").remove();
 		d3.csv("p2sampledata.csv", function(error, data){
 
 		var y3PercentScale = d3.scale.linear()
@@ -268,17 +268,20 @@ console.log(champYear);
 		}
 
 
-
-		for (i = 0; i<champYear.length; i++){
-			var image = "assets/img/" + champTeam[i] +  ".png";
-			svg.append("svg:image")
-			.attr('x', xScale(champYear[i]) + axesOffset*2/5)
+		d3.selectAll(".locale")[0].forEach(function(point,i) {
+			d3.select(point).transition().duration(1500)
 			.attr('y', yScale(threeData[i]) + axesOffset*2/5)
-			.attr("height", 25)
-			.attr('width', 25)
-			.attr('class', 'locale')
-			.attr("xlink:href", image);
-		}
+			});
+		// for (i = 0; i<champYear.length; i++){
+		// 	var image = "assets/img/" + champTeam[i] +  ".png";
+		// 	svg.append("svg:image")
+		// 	.attr('x', xScale(champYear[i]) + axesOffset*2/5)
+		// 	.attr('y', yScale(threeData[i]) + axesOffset*2/5)
+		// 	.attr("height", 25)
+		// 	.attr('width', 25)
+		// 	.attr('class', 'locale')
+		// 	.attr("xlink:href", image);
+		// }
 
 
 
