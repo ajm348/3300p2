@@ -171,39 +171,48 @@
 				.orient("left");
 //console.log(champYear);
 
-
+		var avg_points = d3.selectAll(".avgs")[0];
 		if (isPercent){
-
-			for (i = 0; i<champYear.length; i++){
-				
-				svg.append("circle")
-				.attr('cx', xScale(champYear[i]) + axesOffset*1/2)
-				.attr('cy', y3PercentScale(avgThreePercent[i]) + axesOffset*1/2)
-				.attr("r", 5)
-				.attr('class', 'avgs')
-				.style("fill", "black")
-				.on("mouseover", function(d){
-					
-				})
-
-
+			if (avg_points.length > 0) {
+				avg_points.forEach(function(point,i) {
+					d3.select(point).transition().duration(1500)
+					.attr('cy', y3PercentScale(avgThreePercent[i]) + axesOffset*1/2);
+				});
 			}
-
+			else {
+				for (i = 0; i<champYear.length; i++){
+					svg.append("circle")
+					.attr('cx', xScale(champYear[i]) + axesOffset*1/2)
+					.attr('cy', y3PercentScale(avgThreePercent[i]) + axesOffset*1/2)
+					.attr("r", 5)
+					.attr('class', 'avgs')
+					.style("fill", "black")
+					.on("mouseover", function(d){
+						
+					});
+				}
+			}
 		}
 
 		
 		//else do #3pa
 		else{
-			for (i = 0; i<champYear.length; i++){
-				
-				svg.append("circle")
-				.attr('cx', xScale(champYear[i]) + axesOffset*1/2)
-				.attr('cy', y3AttemptScale(avgThreeAttempts[i]) + axesOffset*1/2)
-				.attr("r", 5)
-				.attr('class', 'avgs')
-				.style("fill", "black")
-
-
+			if (avg_points.length > 0) {
+				avg_points.forEach(function(point,i) {
+					d3.select(point).transition().duration(1500)
+					.attr('cy', y3AttemptScale(avgThreeAttempts[i]) + axesOffset*1/2);
+				});
+			}
+			else {
+				for (i = 0; i<champYear.length; i++){
+					
+					svg.append("circle")
+					.attr('cx', xScale(champYear[i]) + axesOffset*1/2)
+					.attr('cy', y3AttemptScale(avgThreeAttempts[i]) + axesOffset*1/2)
+					.attr("r", 5)
+					.attr('class', 'avgs')
+					.style("fill", "black");
+				}
 			}
 
 
@@ -290,7 +299,7 @@
 
 
 		if(document.getElementById("leagueAvg").checked){
-			svg.selectAll(".avgs").remove();
+			//svg.selectAll(".avgs").remove();
 			addLeagueAverage();
 		}
 	}
