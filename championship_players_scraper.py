@@ -11,8 +11,8 @@ champions_table = champions_soup.find('table', attrs={'class': 'stats_table'})
 #find all the rows (trs) in the table
 champions_rows = champions_table.findChildren(["tr"])
 #header row for eventual printing stuff
-print "Year,Team,Player,ast,stl,blk,TRB,3p%,3pA,2p%,2pA,PTS,MP,WS,Height,Weight,Position,Number,Draft_Year,picture_url"
-for row in champions_rows:
+print "Year,Team,Player,ast,stl,blk,TRB,3p%,3pA,2p%,2pA,PTS,MP,WS,Height,Weight,Position,Number,Draft_Year,picture_url,career_ast,career_stl,career_blk,career_TRB,career_3p%,career_3pA,career_2p%,career_2pA,career_PTS,career_MP"
+for row in champions_rows[3:]:
 	#cells are all the tds; thus, you can think of a table as a 2d array with rows and cells within the rows
 	#beautiful soup turns each of these into an array by virtue of the findChildren command
 	cells = row.findChildren('td')
@@ -20,6 +20,7 @@ for row in champions_rows:
 	if len(cells) >=3:
 		#here I'm using each row to springboard me onto another page (the team page for that year)
 		#the href we want is stored in the 3rd cell
+		#print cells
 		champion_url ='http://www.basketball-reference.com'+cells[2].findChildren('a',href=True)[0]['href']
 		#soupifying
 		champion_soup = BeautifulSoup(urlopen(champion_url), "html.parser")
@@ -31,7 +32,7 @@ for row in champions_rows:
 		per_game_rows = per_game_table.findChildren(["tr"])
 		advanced_rows = advanced_table.findChildren(["tr"])
 		roster_rows = roster_table.findChildren(["tr"])
-		#print out Year,Team,Player,ast,stl,blk,3p%,3pA,2p%,2pA,PTS,MP,WS,Height,Weight,Position,Number,Draft_Year,picture_url
+		#print out Year,Team,Player,ast,stl,blk,3p%,3pA,2p%,2pA,PTS,MP,WS,Height,Weight,Position,Number,Draft_Year,picture_url,career_ast,career_stl,career_blk,career_TRB,career_3p%,career_3pA,career_2p%,career_2pA,career_PTS,career_MP didn't do career_WS
 		#the comma after each print keeps it from printing a new line
 		i = 1
 		while (i < 6):
@@ -81,7 +82,19 @@ for row in champions_rows:
 				if (j == len(player_links)-1):
 					print ",",
 			#picture
-			print player_soup.findChildren('img')[1]['src']
+			print player_soup.findChildren('img')[1]['src'],",",
+			per_game_table = player_soup.find('table', attrs={ 'id' : 'per_game' })
+			career_cells = per_game_table.find('tfoot').find('tr').findChildren('td')
+			print career_cells[24].string,",",
+			print career_cells[25].string,",",
+			print career_cells[26].string,",",
+			print career_cells[23].string,",",
+			print career_cells[13].string,",",
+			print career_cells[12].string,",",
+			print career_cells[16].string,",",
+			print career_cells[15].string,",",
+			print career_cells[29].string,",",
+			print career_cells[7].string
 			i+=1
 
 		#interesting player stuff: ast, stl, blk (plus offesnive shooting), MP (take top 5 from per game sheet)
