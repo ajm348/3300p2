@@ -11,8 +11,8 @@ champions_table = champions_soup.find('table', attrs={'class': 'stats_table'})
 #find all the rows (trs) in the table
 champions_rows = champions_table.findChildren(["tr"])
 #header row for eventual printing stuff
-print "Year,Team,3PA,3P%,2PA,2P%,O3PA,O3P%,O2PA,O2P%"
-for row in champions_rows:
+print "Year,Team,3PA,3P%,2PA,2P%,O3PA,O3P%,O2PA,O2P%,pctoffg0-3,pctoffg3-10,pctoffg10-16,pctoffg16<3,pctoffg3,fgpct0-3,fgpct3-10,fgpct10-16,fgpct16<3,fgpct3"
+for row in champions_rows[3:]:
 	#cells are all the tds; thus, you can think of a table as a 2d array with rows and cells within the rows
 	#beautiful soup turns each of these into an array by virtue of the findChildren command
 	cells = row.findChildren('td')
@@ -41,4 +41,33 @@ for row in champions_rows:
 		print opponent_cells[8].string,",",
 		print opponent_cells[10].string,",",
 		#print a new line after the last one
-		print opponent_cells[11].string
+
+		#get fg distance for post 2001
+		if (int(cells[0].string) < 2001):
+			print opponent_cells[11].string
+		else:
+			print opponent_cells[11].string,",",
+			BeautifulSoup(urlopen(champion_url), "html.parser")
+			league_soup = BeautifulSoup(urlopen('http://www.basketball-reference.com/leagues/NBA_'+cells[0].string+'.html'), "html.parser")
+			#print 'http://www.basketball-reference.com/league/NBA_'+cells[0].string+'.html'
+			shooting_rows = league_soup.find('table', attrs = { 'id' : 'shooting' }).findChildren('tr')
+			for row in shooting_rows:
+				shooting_cells = row.findChildren('td')
+				if (len(shooting_cells) > 3):
+					name = shooting_cells[1].findChildren('a',href=True)[0].string
+					if (name == cells[2].string):
+						print shooting_cells[7].string,",",
+						print shooting_cells[8].string,",",
+						print shooting_cells[9].string,",",
+						print shooting_cells[10].string,",",
+						print shooting_cells[11].string,",",
+						print shooting_cells[13].string,",",
+						print shooting_cells[14].string,",",
+						print shooting_cells[15].string,",",
+						print shooting_cells[16].string,",",
+						print shooting_cells[17].string
+						break
+
+
+
+
