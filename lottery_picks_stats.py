@@ -23,7 +23,7 @@ for row in lottery_rows:
 		if len(is_it_a_year) > 0:
 			pick_count = 0
 			year = is_it_a_year[0].string
-		elif cells[0].string != " Pick ":
+		elif (cells[0].string != " Pick ") and (int(year) < 1998):
 			if pick_count <= 6:
 				#prints year drafted
 				print year,",",
@@ -39,11 +39,21 @@ for row in lottery_rows:
 					print "Joel Embiid"
 				else:
 					#prints player name
+					if name == "Michael Conley":
+						name = "Mike Conley"
+					elif name == "Sheldon Williams":
+						name = "Shelden Williams"
+					elif name == "Carmello Anthony":
+						name = "Carmelo Anthony"
 					print name,",",
 					first_name = name[:name.index(" ")].lower()
 					last_name = name[name.index(" ")+1:].lower()
+					if name == "Nene Hilario":
+						name = "Nene"
 					if last_name == "kidd-gilchrist":
 						last_name = "kiddgilchrist"
+					elif last_name == "van horn":
+						last_name = "vanhorn"
 					if first_name == "o.j.":
 						first_name = "oj"
 					for i in range(1,10):
@@ -71,15 +81,19 @@ for row in lottery_rows:
 											TOT = False
 										else:
 											print season_year,",",
-											print season_cells[2].string,",",
-											if team == "CHO":
+											if team == "CHO" or team == "CHH":
 												team = "CHA"
-											elif team == "NOP":
+											elif team == "NOP" or team == "NOK":
 												team = "NOH"
 											elif team == "BRK":
 												team = "NJN"
 											elif team == "SEA":
 												team = "OKC"
+											elif team == "VAN":
+												team = "MEM"
+											elif team == "WSB":
+												team = "WAS"
+											print team,",",
 											team_url = "http://www.basketball-reference.com/teams/"+team+"/"
 											team_soup = BeautifulSoup(urlopen(team_url), "html.parser")
 											season_table = team_soup.find('table', attrs={ 'id' : team })
