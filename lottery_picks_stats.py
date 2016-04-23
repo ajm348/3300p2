@@ -32,6 +32,8 @@ for row in lottery_rows:
 					name = text[:text.index(",")][1:]
 				except ValueError:
 					name = text[1:]
+				if year == "2011":
+					name = name[:len(name)-1]
 				if name == "Joel Embiid#":
 					#motherfucker never played a goddamn nba game
 					print "Joel Embiid"
@@ -40,6 +42,10 @@ for row in lottery_rows:
 					print name,",",
 					first_name = name[:name.index(" ")].lower()
 					last_name = name[name.index(" ")+1:].lower()
+					if last_name == "kidd-gilchrist":
+						last_name = "kiddgilchrist"
+					if first_name == "o.j.":
+						first_name = "oj"
 					for i in range(1,10):
 						if len(last_name) >= 5:
 							player_url = "http://www.basketball-reference.com/players/"+last_name[0]+"/"+last_name[:5]+first_name[:2]+"0"+str(i)+".html"
@@ -56,28 +62,31 @@ for row in lottery_rows:
 										print ""
 										break
 									#doesn't work when all-star...
-									season_year = season_cells[0].string
-									print season_year,",",
-									team = season_cells[2].string
-									if team == 'TOT':
-										TOT = True
-									elif TOT:
-										TOT = False
-									else:
-										print season_cells[2].string,",",
-										if team == "CHO":
-											team = "CHA"
-										elif team == "NOP":
-											team = "NOH"
-										elif team == "BRK":
-											team = "NJN"
-										team_url = "http://www.basketball-reference.com/teams/"+team+"/"
-										team_soup = BeautifulSoup(urlopen(team_url), "html.parser")
-										season_table = team_soup.find('table', attrs={ 'id' : team })
-										for each in season_table.findChildren('tr')[1:]:
-											#print each
-											if each.findChildren('td')[0].string == season_year:
-												print each.findChildren('td')[3].string,",",
+									if len(season_cells[0].findChildren('a')) > 0:
+										season_year = season_cells[0].find('a').string
+										team = season_cells[2].string
+										if team == 'TOT':
+											TOT = True
+										elif TOT:
+											TOT = False
+										else:
+											print season_year,",",
+											print season_cells[2].string,",",
+											if team == "CHO":
+												team = "CHA"
+											elif team == "NOP":
+												team = "NOH"
+											elif team == "BRK":
+												team = "NJN"
+											elif team == "SEA":
+												team = "OKC"
+											team_url = "http://www.basketball-reference.com/teams/"+team+"/"
+											team_soup = BeautifulSoup(urlopen(team_url), "html.parser")
+											season_table = team_soup.find('table', attrs={ 'id' : team })
+											for each in season_table.findChildren('tr')[1:]:
+												#print each
+												if each.findChildren('td')[0].string == season_year:
+													print each.findChildren('td')[3].string,",",
 							break
 
 				pick_count+=1
