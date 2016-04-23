@@ -23,7 +23,7 @@ for row in lottery_rows:
 		if len(is_it_a_year) > 0:
 			pick_count = 0
 			year = is_it_a_year[0].string
-		elif (cells[0].string != " Pick ") and (int(year) < 1998):
+		elif (cells[0].string != " Pick ") and (int(year) < 1993):
 			if pick_count <= 6:
 				#prints year drafted
 				print year,",",
@@ -37,6 +37,9 @@ for row in lottery_rows:
 				if name == "Joel Embiid#":
 					#motherfucker never played a goddamn nba game
 					print "Joel Embiid"
+				elif name == "Len Bias":
+					#died before he played
+					print "Len Bias"
 				else:
 					#prints player name
 					if name == "Michael Conley":
@@ -45,6 +48,14 @@ for row in lottery_rows:
 						name = "Shelden Williams"
 					elif name == "Carmello Anthony":
 						name = "Carmelo Anthony"
+					elif name == "Isaiah (J.R.) Rider":
+						name = "Isaiah Rider"
+					elif name == "Jimmy Jackson":
+						name = "Jim Jackson"
+					elif name == "Chris Jackson":
+						name = "Mahmoud Abdul-Rauf"
+					elif name == "Armon Gilliam":
+						name = "Armen Gilliam"
 					print name,",",
 					first_name = name[:name.index(" ")].lower()
 					last_name = name[name.index(" ")+1:].lower()
@@ -54,13 +65,19 @@ for row in lottery_rows:
 						last_name = "kiddgilchrist"
 					elif last_name == "van horn":
 						last_name = "vanhorn"
+					elif last_name == "o'neal":
+						last_name = "oneal"
 					if first_name == "o.j.":
 						first_name = "oj"
+					elif first_name == "j.r.":
+						first_name = "jr"
 					for i in range(1,10):
 						if len(last_name) >= 5:
 							player_url = "http://www.basketball-reference.com/players/"+last_name[0]+"/"+last_name[:5]+first_name[:2]+"0"+str(i)+".html"
 						else:
 							player_url = "http://www.basketball-reference.com/players/"+last_name[0]+"/"+last_name+first_name[:2]+"0"+str(i)+".html"
+						if name == "Larry Johnson":
+							player_url = "http://www.basketball-reference.com/players/j/johnsla02.html"
 						player_soup = BeautifulSoup(urlopen(player_url), "html.parser")
 						if player_soup.find('h1').string == name:
 							totals_table = player_soup.find('table', attrs={ 'id' : 'totals' })
