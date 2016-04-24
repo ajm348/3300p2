@@ -11,7 +11,7 @@ body { font-family: "Open Sans"; } div { margin: 30px; }
 div {margin: 0;}
 
 #main-content-wrapper {
-	width: 90%;
+	width: 1200px;
 	margin: auto;
 }
 
@@ -100,12 +100,32 @@ img {
 	position: absolute;
 	width: 45%;
 	margin: 8px;
+	
 }
 
 /*back of the card*/
 .back {
 	display: none;
+	overflow: hidden;
 }
+
+.back .team-logo {
+	opacity: 0.065;
+}
+.back .position {
+	margin-top: -1em;
+}
+.back img {
+	position: absolute;
+	width: 200px;
+	margin-left: 225px;
+}
+
+.career-stats{
+	margin-top: -.5em;
+	
+}
+
 </style>
 <title>Project 2</title>
 </head>
@@ -186,17 +206,67 @@ function createTeamCards(leftOrRight){
 	});
 }
 
+function draftIdea(player) {
+	var drafted;
+	
+	d3.csv("lottery_picks_data.csv", function (error, rows) {	
+		if (error) {console.log(error);}
+		playersStats = d3.map(rows, function (year) { return year.Year; });
+		//console.log(rows);
+		for (var i=0; i<rows.length; i++){
+			//console.log(rows[i]);
+			//console.log(player.Draft_Year);
+			if (rows[i].Year == player.Draft_Year) {
+				
+				if (player.Player == rows[i].P1) {
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the first overall pick.";
+				}
+				if (player.Player == rows[i].P2) {
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the second overall pick.";
+				}
+				if (player.Player == rows[i].P3) {
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the third overall pick.";
+				}
+				if (player.Player == rows[i].P4) {
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the fourth overall pick.";
+				}
+				if (player.Player == rows[i].P5) {
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the fifth overall pick.";
+				}
+				if (player.Player == rows[i].P6) {
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the sixth overall pick.";
+				}
+				if (player.Player == rows[i].P7) {
+					console.log(" was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the seventh overall pick.");
+					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the seventh overall pick.";
+				}
+				else {
+					return " was drafted in "+player.Draft_Year+"by the"+ rows[i].P1Team+".";
+				}
+			}
+		}
+	});
+	
+	return drafted;
+}
+
 //creating cards for the players.
 function createCard(player, leftorRight){
 	//console.log(player);
 	$("#playerCards"+leftorRight).append("<div class='card' id="+player.id+leftorRight+" onclick='flip("+player.id+leftorRight+")'> </div>");
-	$("#"+player.id+leftorRight).append("<div class='card-wrapper'> <div class='card-content'> <div class='team-logo'></div> <div class='player-photo'>  <img src='assets/img/"+player.picture_url+"' alt='"+player.Player+" Photo'></div><div class='player-bio'> <h1><span class='playerNumber"+leftorRight+"'>#"+player.Number+" </span>"+player.Player+"</h1><ul class='general-info'> <li class='first'>"+player.Height+", "+player.Weight+"<span class='lbs'>lbs</span> <span class='position'>"+player.Position+"</span></li> <li class='last'>"+player.Team+"</li></ul></div> <div class='player-stats'> <p class='yearPlaying'>"+Year+" Season</p> <table class='stats'><thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>SPG</th><th>3%</th><th>3A</th><th>WS</th></tr></thead> <tbody> <tr><td>"+player.MP+"</td><td>"+player.PTS+"</td><td>"+player.ast+"</td><td>"+player.TRB+"</td><td>"+player.stl+"</td><td>"+(player['p3%']*100).toFixed(1)+"%</td><td>"+player['p3A']+"</td><td>"+player.WS+"</td></tr></tbody></table></div></div></div>");
+	$("#"+player.id+leftorRight).append("<div class='card-wrapper'> <div class='card-content'> <div class='player-photo'>  <img src='assets/img/"+player.picture_url+"' alt='"+player.Player+" Photo'></div><div class='player-bio'> <h1><span class='playerNumber"+leftorRight+"'>#"+player.Number+" </span>"+player.Player+"</h1><ul class='general-info'> <li class='first'>"+player.Height+", "+player.Weight+"<span class='lbs'>lbs</span> <span class='position'>"+player.Position+"</span></li> <li class='last'>"+player.Team+"</li></ul></div> <div class='player-stats'> <p class='yearPlaying'>"+Year+" Season</p> <table class='stats'><thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>SPG</th><th>3P%</th><th>3PA</th><th>WS</th></tr></thead> <tbody> <tr><td>"+player.MP+"</td><td>"+player.PTS+"</td><td>"+player.ast+"</td><td>"+player.TRB+"</td><td>"+player.stl+"</td><td>"+(player['p3%']*100).toFixed(1)+"%</td><td>"+player['p3A']+"</td><td>"+player.WS+"</td></tr></tbody></table></div></div></div>");
 	
 	//the player vs the position average that year
-	$("#"+player.id+leftorRight).append("<div class='back' id=back"+player.id+leftorRight+"><h1>THIS IS THE PLAYER STATS VS THE league THAT YEAR</h1></div>");
+	var fg = "??";
 	
+	//this doesnt work yet
+	//var draftMe = draftIdea(player);
+	var draftMe = " was drafted in "+player.Draft_Year;
+	
+	
+	$("#"+player.id+leftorRight).append("<div class='back' id=back"+player.id+leftorRight+"><div class='card-wrapper'> <div class='team-logo'><img src='assets/img/"+player.Team+".png' alt='Team Logo'></div><div class='card-content'> <h1><span class='playerNumber"+leftorRight+"'>#"+player.Number+" </span>"+player.Player+"</h1><br><span class='position'>"+player.Position+"</span> "+player.Team+"<br><p class='draftYear'>"+player.Player+" "+draftMe+".</p> <div class='career-stats' id=st"+player.id+"> <p class='careerPlaying'>Career Stats</p> <table class='stats'><thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>SPG</th><th>3%</th><th>3A</th><th>FG%</th></tr></thead> <tbody> <tr><td>"+player.career_MP+"</td><td>"+player.career_PTS+"</td><td>"+player.career_ast+"</td><td>"+player.career_TRB+"</td><td>"+player.career_stl+"</td><td>"+(player['career_3p%']*100).toFixed(1)+"%</td><td>"+player['career_3pA']+"</td><td>"+ fg +"</td></tr></tbody></table></div></div></div></div>");
 	var teamColors;
-	console.log(player.Team);
+	//console.log(player.Team);
 	for (var k=0; k<nbaColors.length; k++){
 		//console.log(nbaColors[k].team);
 		if (nbaColors[k].team == player.Team) {
@@ -209,10 +279,13 @@ function createCard(player, leftorRight){
 				$("#"+player.id+leftorRight).css("color","#aaa");
 			}
 			$(".position").css("color", teamColors.first);
+			$("#st"+player.id).css("color", teamColors.first).css("font-size",20);
 		}
 	}
 	
 }
+
+//career_ast	career_stl	career_blk	career_TRB	career_3p%	career_3pA	career_2p%	career_2pA	career_PTS	career_MP
 
 //flip to the back of the card
 function flip(divID) {
@@ -220,7 +293,17 @@ function flip(divID) {
 	var height = $("#"+divID).height();
 	$("#"+divID).height(height);
 	
-	$("#"+divID).children().fadeToggle();
+	if ($("#"+divID).children(":first").is(":visible") ) {
+		
+		$("#"+divID).children(":first").fadeToggle(300, function() {
+			$("#"+divID).children(":nth-child(2)").fadeToggle();
+		});
+	}
+	else {
+		$("#"+divID).children(":nth-child(2)").fadeToggle(300, function() {
+			$("#"+divID).children(":first").fadeToggle();
+		});
+	}
 }
 
 </script>
