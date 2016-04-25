@@ -314,8 +314,15 @@
 	<select id="raceYear" onchange="createXAxis()">
 		
 	</select>
+	<button type="button" onClick="moveHorse()">Play Next Year</button>
 </div>
 <script type="text/javascript">
+	var lotteryPicks = []
+	var yr;
+	var shouldAddHorses = true;
+	var canPlayHorses = false;
+	var yrOffset = 0;
+	var xScaleYears;
 	//Creating SVG
 	var svgHR = d3.select("#horseRace").append("svg")
 	.attr("width", lgWidth)
@@ -349,10 +356,15 @@
 
 	function createXAxis(){
 		svgHR.select(".x.axis").remove();
-
-		var yr = document.getElementById("raceYear").value;
+		canPlayHorses = false;
+		yrOffset =0;
+		 yr = document.getElementById("raceYear").value;
 		if(!isNaN(yr)){
-			var xScaleYears = d3.scale.linear()
+			//Need to move points back to origin 
+
+
+			canPlayHorses = true;
+			xScaleYears = d3.scale.linear()
 			.domain([yr,2014])
 			.range([0,lgWidth - axesOffset]);
 
@@ -367,12 +379,58 @@
 			.call(xAxisYears);
 
 
-			d3.csv("lottery_picks_data.csv", function(error,data){
-				//2014-year = index to go into
-				var dataIndex = 2014-yr;
-				console.log(data[dataIndex]);
-				var raceYearObject = data[dataIndex];
-			})
+			d3.csv("lottery_picks_stats_data.csv", function(error,data){
+				//2014-year = start index for first player
+
+				var dataIndexStart = (2014-yr)*7;
+				var dataIndexEnd = dataIndexStart+6;
+				console.log(data[dataIndexStart]);
+				//var raceYearObject = data[dataIndex];
+
+				for(i=dataIndexStart; i<=dataIndexEnd; i++){
+					lotteryPicks.push(data[i]);
+				}
+				//var xax = "Player"
+				//console.log(lotteryPicks[0][xax])
+
+				if(shouldAddHorses){
+				lotteryPicks.forEach(function(d){
+					svgHR.append("circle")
+					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+					.attr('cy', yWins(0) + axesOffset*1/2)
+					.attr("r", 4)
+					.attr('class', 'horses')
+					.style("fill", "black");
+				});
+				shouldAddHorses = false;
+				}
+
+			});
+
+			d3.selectAll(".horses")[0].forEach(function(point,i) {
+			d3.select(point).transition().duration(1500)
+			.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+			.attr('cy', yWins(0) + axesOffset*1/2);
+			});
+		}
+		else{
+			svgHR.selectAll(".horses").remove();
+			shouldAddHorses = true;
+		}
+	}
+
+	function moveHorse(){
+		if(canPlayHorses){
+		yr++;
+		yrOffset++;
+		d3.selectAll(".horses")[0].forEach(function(point,i) {
+
+			var winYrIndex = 'wins' + yrOffset.toString();
+
+			d3.select(point).transition().duration(1500)
+			.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+			.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
+			});
 		}
 	}
 
