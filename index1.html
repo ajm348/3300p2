@@ -40,12 +40,13 @@
 </div>
 
 
+
 <script type="text/javascript">
 
 	var isPercent = true;
 	var loadedAvgs = false;
 	var lgHeight = 800;
-	var lgWidth = 1000;
+	var lgWidth = 1400;
 	var axesOffset = 100;
 	var champYear = [];
 	var champTeam = [];
@@ -123,8 +124,8 @@
 			svg.append("svg:image")
 			.attr('x', xScale(champYear[i]) + axesOffset*2/5)
 			.attr('y', y3PercentScale(threePercent[i]) + axesOffset*2/5)
-			.attr("height", 25)
-			.attr('width', 25)
+			.attr("height", 34)
+			.attr('width', 34)
 			.attr('class', 'locale')
 			.attr("xlink:href", image);
 
@@ -304,10 +305,79 @@
 		}
 	}
 
+
 </script>
+<p>
+	
+</p>
+<div id="horseRace">
+	<select id="raceYear" onchange="createXAxis()">
+		
+	</select>
+</div>
+<script type="text/javascript">
+	//Creating SVG
+	var svgHR = d3.select("#horseRace").append("svg")
+	.attr("width", lgWidth)
+	.attr("height", lgHeight);
+	//Looping through the years and adding the years to run the race on.
+	var raceyr = document.getElementById("raceYear");
+	//Adding Select year option
+	var topFiller = document.createElement("option")
+	topFiller.text = "---Select Year---"
+	raceyr.add(topFiller);
+	for(i = 2014; i>=1980; i--){
+		var option = document.createElement("option");
+		option.text = i;
+		raceyr.add(option);
+	}
+	//Adding the Y axis which doesn't change regardless of the year
+	var yWins = d3.scale.linear()
+		.domain([0, 83])
+		.range([lgHeight - axesOffset, 0]);
+
+	var yWinsAxis = d3.svg.axis()
+	.scale(yWins)
+	.ticks(100)
+	.orient("left");
+
+	svgHR.append("g")
+	.attr("class", "y axis")
+	.attr("transform", "translate("+axesOffset/2+", 50)")
+	.call(yWinsAxis);
 
 
+	function createXAxis(){
+		svgHR.select(".x.axis").remove();
 
+		var yr = document.getElementById("raceYear").value;
+		if(!isNaN(yr)){
+			var xScaleYears = d3.scale.linear()
+			.domain([yr,2014])
+			.range([0,lgWidth - axesOffset]);
+
+			var xAxisYears = d3.svg.axis()
+			.scale(xScaleYears)
+			.ticks(2015-yr)
+			.orient("bottom");
+
+			svgHR.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate("+(axesOffset/2)+", " + (lgHeight - axesOffset/2)+ ")")
+			.call(xAxisYears);
+
+
+			d3.csv("lottery_picks_data.csv", function(error,data){
+				//2014-year = index to go into
+				var dataIndex = 2014-yr;
+				console.log(data[dataIndex]);
+				var raceYearObject = data[dataIndex];
+			})
+		}
+	}
+
+
+</script>
 
 </body>
 
