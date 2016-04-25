@@ -333,7 +333,7 @@
 	var topFiller = document.createElement("option")
 	topFiller.text = "---Select Year---"
 	raceyr.add(topFiller);
-	for(i = 2014; i>=1980; i--){
+	for(i = 2014; i>=1985; i--){
 		var option = document.createElement("option");
 		option.text = i;
 		raceyr.add(option);
@@ -394,6 +394,7 @@
 				//console.log(lotteryPicks[0][xax])
 
 				if(shouldAddHorses){
+					console.log(lotteryPicks);
 				lotteryPicks.forEach(function(d){
 					svgHR.append("circle")
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
@@ -404,13 +405,14 @@
 				});
 				shouldAddHorses = false;
 				}
-
+				else{
+					d3.selectAll(".horses")[0].forEach(function(point,i) {
+				d3.select(point).transition().duration(1500)
+				.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+				.attr('cy', yWins(0) + axesOffset*1/2);
 			});
+				}
 
-			d3.selectAll(".horses")[0].forEach(function(point,i) {
-			d3.select(point).transition().duration(1500)
-			.attr('cx', xScaleYears(yr) + axesOffset*1/2)
-			.attr('cy', yWins(0) + axesOffset*1/2);
 			});
 		}
 		else{
@@ -423,14 +425,17 @@
 		if(canPlayHorses){
 		yr++;
 		yrOffset++;
+		console.log(yr + " " + yrOffset);
 		d3.selectAll(".horses")[0].forEach(function(point,i) {
 
 			var winYrIndex = 'wins' + yrOffset.toString();
-
+			console.log(winYrIndex);
+			if(!(lotteryPicks[i][winYrIndex] === "")){
 			d3.select(point).transition().duration(1500)
 			.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 			.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
-			});
+			}
+			})
 		}
 	}
 
