@@ -1,0 +1,370 @@
+<html>
+<head>	
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<style>
+	.axis path,
+	.axis line {
+	    fill: none;
+	    stroke: black;
+	    shape-rendering: crispEdges;
+	}
+	.axis text {
+	    font-family: sans-serif;
+	    font-size: 7px;
+	}
+	svg {
+		border: 1px solid blue;
+	}
+	.tooltip {
+	  position: absolute;
+	  width: 200px;
+	  height: 28px;
+	  pointer-events: none;
+	}
+
+	.axis path,
+	.axis line {
+	    fill: none;
+	    stroke: black;
+	    shape-rendering: crispEdges;
+	}
+	.axis text {
+	    font-family: sans-serif;
+	    font-size: 7px;
+	}
+	svg {
+		border: 1px solid blue;
+	}
+	.tooltip {
+	  position: absolute;
+	  width: 200px;
+	  height: 28px;
+	  pointer-events: none;
+	}
+	
+	
+	/*style the radio buttons adapted code from http://codepen.io/AngelaVelasquez/pen/Eypnq*/
+	h2 {
+	color: #A9A9A9;
+	font-weight: normal;
+	}
+	
+	.container ul{
+	  list-style: none;
+	  width: 100%;
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	
+	ul li{
+	  color: #A9A9A9;
+	  display: block;
+	  position: relative;
+	  float: left;
+	}
+	
+	ul li input[type=radio]{
+	  position: absolute;
+	  visibility: hidden;
+	}
+	
+	ul li label{
+	  display: block;
+	  position: relative;
+	  font-weight: 300;
+	  font-size: 1.35em;
+	  padding: 25px 25px 25px 80px;
+	  margin: 10px auto;
+	  height: 30px;
+	  z-index: 9;
+	  cursor: pointer;
+	  -webkit-transition: all 0.25s linear;
+	}
+	
+	ul li:hover label{
+		color: #0075BF;
+	}
+	
+	ul li .check{
+	  display: block;
+	  position: absolute;
+	  border: 5px solid #A9A9A9;
+	  border-radius: 100%;
+	  height: 25px;
+	  width: 25px;
+	  top: 30px;
+	  left: 20px;
+		z-index: 5;
+		transition: border .25s linear;
+		-webkit-transition: border .25s linear;
+	}
+	
+	ul li:hover .check {
+	  border: 5px solid #0075BF;
+	}
+	
+	ul li .check::before {
+	  display: block;
+	  position: absolute;
+		content: '';
+	  border-radius: 100%;
+	  height: 15px;
+	  width: 15px;
+	  top: 5px;
+		left: 5px;
+	  margin: auto;
+		transition: background 0.25s linear;
+		-webkit-transition: background 0.25s linear;
+	}
+	
+	/*when checked*/
+	input[type=radio]:checked ~ .check {
+	  border: 5px solid #009CFF;
+	}
+	
+	input[type=radio]:checked ~ .check::before{
+	  background: #009CFF;
+	}
+	
+	input[type=radio]:checked ~ label{
+	  color: #009CFF;
+	}
+	
+	input[type=checkbox]:checked ~ .check {
+	  border: 5px solid #009CFF;
+	}
+	
+	input[type=checkbox]:checked ~ .check::before{
+	  background: #009CFF;
+	}
+	
+	input[type=checkbox]:checked ~ label{
+	  color: #009CFF;
+	}
+</style>
+
+</head>
+
+<body>
+<p>
+	
+</p>
+<div id="horseRace">
+	<select id="raceYear" onchange="createXAxis()">
+		
+	</select>
+	<button type="button" onClick="moveHorse()">Play Next Year</button>
+</div>
+<script type="text/javascript">
+	var lgHeight = 800;
+	var lgWidth = 1400;
+	var axesOffset = 100;
+	var lotteryPicks;
+	var yr;
+	var shouldAddHorses = true;
+	var canPlayHorses = false;
+	var yrOffset = 0;
+	var xScaleYears;
+	//Creating SVG
+	var svgHR = d3.select("#horseRace").append("svg")
+	.attr("width", lgWidth)
+	.attr("height", lgHeight);
+	//Looping through the years and adding the years to run the race on.
+	var raceyr = document.getElementById("raceYear");
+	//Adding Select year option
+	var topFiller = document.createElement("option")
+	topFiller.text = "---Select Year---"
+	raceyr.add(topFiller);
+	for(i = 2014; i>=1985; i--){
+		var option = document.createElement("option");
+		option.text = i;
+		raceyr.add(option);
+	}
+	//Adding the Y axis which doesn't change regardless of the year
+	var yWins = d3.scale.linear()
+		.domain([0, 83])
+		.range([lgHeight - axesOffset, 0]);
+
+	var yWinsAxis = d3.svg.axis()
+	.scale(yWins)
+	.ticks(100)
+	.orient("left");
+
+	svgHR.append("g")
+	.attr("class", "y axis")
+	.attr("transform", "translate("+axesOffset/2+", 50)")
+	.call(yWinsAxis);
+
+	/* Add 'curtain' rectangle to hide entire graph */
+  	// var curtain = svgHR.append('rect')
+   //  .attr('x', -1 * lgWidth)
+   //  .attr('y', -1 * lgHeight)
+   //  .attr('height', lgHeight)
+   //  .attr('width', lgWidth)
+   //  .attr('class', 'curtain')
+   //  .attr('transform', 'rotate(180)')
+   //  .style('fill', '#ffffff')
+
+
+	function createXAxis(){
+		svgHR.select(".x.axis").remove();
+		canPlayHorses = false;
+		yrOffset =0;
+		yr = document.getElementById("raceYear").value;
+		if(!isNaN(yr)){
+			//Need to move points back to origin 
+
+
+			canPlayHorses = true;
+			xScaleYears = d3.scale.linear()
+			.domain([yr,2014])
+			.range([0,lgWidth - axesOffset]);
+
+			var xAxisYears = d3.svg.axis()
+			.scale(xScaleYears)
+			.ticks(2015-yr)
+			.orient("bottom");
+
+			svgHR.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate("+(axesOffset/2)+", " + (lgHeight - axesOffset/2)+ ")")
+			.call(xAxisYears);
+
+
+			// d3.csv("lottery_picks_stats_data.csv", function(error,data){
+			// 	//Turn this shit to json
+			// 	var j = 0;
+			// 	console.log("{")
+			// 	while (j < data.length) {
+			// 		//{year : [{p1 : {year 1 : {win1 : 2}, {team1 : NOR}},  y2 }, p2]}
+			// 		//{year : {p1 : [{year : 2014, win : 2, team : NOR},  y2 ]}, p2}, year2 : }
+			// 		console.log("'"+data[j]["Year_Drafted"]+"': {")
+			// 		for (var k = 0; k < 7; k++) {
+			// 			console.log("'"+data[j]["Player"]+"': [")
+			// 			var l = 1;
+			// 			while ((data[j]["Year"+l] != "") && (data[j]["Year"+l] != undefined)) {
+			// 				console.log("{'year' : "+data[j]["Year"+l]+", 'wins': "+data[j]["wins"+l]+", 'team': '"+data[j]["Team"+l]+"' },")
+			// 				l++;
+			// 			}
+			// 			console.log("],")
+			// 			j++;
+			// 		}
+			// 		console.log("},")
+			// 	}
+			// 	console.log("}")
+			// });
+
+
+
+
+
+			d3.json("lottery_picks_stats_data.json", function(error,data){
+				//2014-year = start index for first player
+
+				//var dataIndexStart = (2014-yr)*7;
+				//var dataIndexEnd = dataIndexStart+6;
+				//console.log(data[dataIndexStart]);
+				//var raceYearObject = data[dataIndex];
+
+				// for(i=dataIndexStart; i<=dataIndexEnd; i++){
+				// 	lotteryPicks.push(data[i]);
+				// }
+
+				var line = d3.svg.line()
+			    .interpolate("monotone")
+			    .x(function(d) { return xScaleYears(d["year"]); })
+			    .y(function(d) { return yWins(d["wins"]); });
+
+			    //year = 2014
+
+			    horseLines = svgHR.selectAll(".line")
+			    	.data(data[yr])
+			    
+			    horseLines.enter()
+			    	.append("path")
+			    	.attr("class","line")
+			    	.style("stroke","#000")
+			    	.attr('d', function(d) {
+          				return line(d["stats"]);
+        			});
+
+				if(shouldAddHorses){
+					lotteryPicks = svgHR.selectAll("circle").data(data[yr])
+					//console.log(lotteryPicks);
+					lotteryPicks.enter().append("circle")
+						.attr('cx', function (d) { xScaleYears(yr) + axesOffset*1/2 })
+						.attr('cy', yWins(0) + axesOffset*1/2)
+						.attr("r", 4)
+						.attr('class', 'horses')
+						.style("fill", "black");
+					shouldAddHorses = false;
+				}
+				else{
+					d3.selectAll(".horses")[0].forEach(function(point,i) {
+						d3.select(point).transition().duration(1500)
+						.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+						.attr('cy', yWins(0) + axesOffset*1/2);
+					});
+					d3.selectAll(".horses").remove()
+					lotteryPicks = svgHR.selectAll("circle").data(data[yr])
+					//console.log(lotteryPicks);
+					lotteryPicks.enter().append("circle")
+						.attr('cx', function (d) { xScaleYears(yr) + axesOffset*1/2 })
+						.attr('cy', yWins(0) + axesOffset*1/2)
+						.attr("r", 4)
+						.attr('class', 'horses')
+						.style("fill", "black");
+				}
+
+			});
+		}
+		else{
+			svgHR.selectAll(".horses").remove();
+			shouldAddHorses = true;
+		}
+	}
+
+	function moveHorse(){
+		if(canPlayHorses){
+			yr++;
+			yrOffset++;
+			//console.log(yr + " " + yrOffset);
+
+			lotteryPicks.transition().duration(1500)
+				.attr('cx', function(d) { 
+					//This is bad, not sure how to fix it
+					for (var i =0; i < d['stats'].length; i++) {
+						if (d['stats'][i]["year"] == yr) {
+							return xScaleYears(yr) + axesOffset*1/2 
+						}
+					}
+				})
+				.attr('cy', function(d) { 
+
+					for (var i =0; i < d['stats'].length; i++) {
+						if (d['stats'][i]["year"] == yr) {
+							return yWins(d['stats'][i]["wins"]) + axesOffset*2/5 
+						}
+					}
+				});
+
+			// d3.selectAll(".horses")[0].forEach(function(point,i) {
+
+			// 	var winYrIndex = 'wins' + yrOffset.toString();
+			// 	//console.log(winYrIndex);
+			// 	if(!(lotteryPicks[i][winYrIndex] === "")){
+			// 	d3.select(point).transition().duration(1500)
+			// 	.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+			// 	.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
+			// 	}
+			// 	})
+		}
+	}
+
+
+</script>
+
+</body>
+
+</html>

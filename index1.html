@@ -21,7 +21,6 @@
 	  height: 28px;
 	  pointer-events: none;
 	}
-
 	.axis path,
 	.axis line {
 	    fill: none;
@@ -180,7 +179,6 @@
 
 
 <script type="text/javascript">
-
 	var isPercent = true;
 	var loadedAvgs = false;
 	var lgHeight = 800;
@@ -192,37 +190,27 @@
 	var threePercent = [];
 	var avgThreeAttempts =[];
 	var avgThreePercent = [];
-
-
-
 	var svg = d3.select("#lineGraph").append("svg")
 	.attr("width", lgWidth)
 	.attr("height", lgHeight);
-
 	var xScale = d3.scale.linear()
 				.domain([1980,2015])
 				.range([0,lgWidth - axesOffset]);
-
 	// var yScale3pta = d3.scale.linear()
 	// 				.domain()
 	// 				.range([lgHeight,0]);
-
 	var xAxis = d3.svg.axis()
 	.scale(xScale)
 	.ticks(30)
 	.orient("bottom");
-
 	svg.append("g")
 	.attr("class", "x axis")
 	.attr("transform", "translate("+(axesOffset/2)+", " + (lgHeight - axesOffset/2)+ ")")
 	.call(xAxis);
-
-
 	// add the tooltip area to the webpage
 	var tooltip = d3.select("body").append("div")
 	    .attr("class", "tooltip")
 	    .style("opacity", 0);
-
 	d3.csv("p2sampledata.csv", function(error, data){
 		
 		data.forEach(function(d){
@@ -232,31 +220,25 @@
 				threeAttempts.push(d.TPA);
 				threePercent.push(d.TPP);
 			}
-
 		})
-
 		var y3PercentScale = d3.scale.linear()
 			.domain([0, Math.max.apply(Math, threePercent)])
 			.range([lgHeight - axesOffset, 0]);
 		var y3AttemptScale = d3.scale.linear()
 			.domain([Math.min.apply(Math, threeAttempts), Math.max.apply(Math, threeAttempts)])
 			.range([lgHeight -axesOffset, 0]);
-
 		var y3PercentAxis = d3.svg.axis()
 		.scale(y3PercentScale)
 		.ticks(50)
 		.orient("left");
-
 		var y3AttemptAxis = d3.svg.axis()
 		.scale(y3AttemptAxis)
 		.ticks(50)
 		.orient("left");
-
 		svg.append("g")
 		.attr("class", "y axis")
 		.attr("transform", "translate("+axesOffset/2+", 50)")
 		.call(y3PercentAxis);
-
 		for (i = 0; i<champYear.length; i++){
 			var image = "assets/img/" + champTeam[i] +  ".png";
 			svg.append("svg:image")
@@ -266,31 +248,19 @@
 			.attr('width', 34)
 			.attr('class', 'locale')
 			.attr("xlink:href", image);
-
-
 		}
-
-
-
-
 	});
-
-
 	function addLeagueAverage(){
 		//If box is checked then add the league averages
 		if(document.getElementById("leagueAvg").checked){
-
-
 			d3.csv("average_3p_data.csv", function(error,data){
 			if(!loadedAvgs){
 				loadedAvgs = true;
 				data.forEach(function(d){
 					avgThreeAttempts.push(d.avgTPA);
 					avgThreePercent.push(d.avgTPP);
-
 				});
 			}
-
 				//console.log(avgThreePercent);
 				var y3PercentScale = d3.scale.linear()
 					.domain([0, Math.max.apply(Math, threePercent)])
@@ -298,18 +268,15 @@
 				var y3AttemptScale = d3.scale.linear()
 					.domain([0, Math.max.apply(Math, threeAttempts)])
 					.range([lgHeight -axesOffset, 0]);
-
 				var y3PercentAxis = d3.svg.axis()
 				.scale(y3PercentScale)
 				.ticks(50)
 				.orient("left");
-
 				var y3AttemptAxis = d3.svg.axis()
 				.scale(y3AttemptAxis)
 				.ticks(50)
 				.orient("left");
 //console.log(champYear);
-
 		var avg_points = d3.selectAll(".avgs")[0];
 		if (isPercent){
 			if (avg_points.length > 0) {
@@ -332,7 +299,6 @@
 				}
 			}
 		}
-
 		
 		//else do #3pa
 		else{
@@ -353,26 +319,14 @@
 					.style("fill", "black");
 				}
 			}
-
-
 		}
-
-
-
 		});
-
-
 	}
 	//Box is unchecked
 	else{
-
 		svg.selectAll(".avgs").remove();
-
 	}
-
 }
-
-
 	function updateData(category) {
 		if(category == 'TPA'){
 			isPercent = false;
@@ -380,30 +334,24 @@
 		else{
 			isPercent = true;
 		}
-
 		//svg.selectAll(".locale").remove();
 		d3.csv("p2sampledata.csv", function(error, data){
-
 		var y3PercentScale = d3.scale.linear()
 			.domain([Math.min.apply(Math, threePercent), Math.max.apply(Math, threePercent)])
 			.range([lgHeight - axesOffset, 0]);
 		var y3AttemptScale = d3.scale.linear()
 			.domain([0, Math.max.apply(Math, threeAttempts)])
 			.range([lgHeight -axesOffset, 0]);
-
 		var y3PercentAxis = d3.svg.axis()
 		.scale(y3PercentScale)
 		.ticks(50)
 		.orient("left");
-
 		var y3AttemptAxis = d3.svg.axis()
 		.scale(y3AttemptScale)
 		.ticks(50)
 		.orient("left");
-
 		var threeData;
 		var yScale;
-
 		if(isPercent){
 			svg.select(".y.axis").transition().duration(1500).call(y3PercentAxis);
 			threeData = threePercent;
@@ -414,8 +362,6 @@
 			threeData = threeAttempts;
 			yScale = y3AttemptScale;
 		}
-
-
 		d3.selectAll(".locale")[0].forEach(function(point,i) {
 			d3.select(point).transition().duration(1500)
 			.attr('y', yScale(threeData[i]) + axesOffset*2/5)
@@ -430,20 +376,12 @@
 		// 	.attr('class', 'locale')
 		// 	.attr("xlink:href", image);
 		// }
-
-
-
 		});
-
-
-
 		if(document.getElementById("leagueAvg").checked){
 			//svg.selectAll(".avgs").remove();
 			addLeagueAverage();
 		}
 	}
-
-
 </script>
 <p>
 	
@@ -480,18 +418,14 @@
 	var yWins = d3.scale.linear()
 		.domain([0, 83])
 		.range([lgHeight - axesOffset, 0]);
-
 	var yWinsAxis = d3.svg.axis()
 	.scale(yWins)
 	.ticks(100)
 	.orient("left");
-
 	svgHR.append("g")
 	.attr("class", "y axis")
 	.attr("transform", "translate("+axesOffset/2+", 50)")
 	.call(yWinsAxis);
-
-
 	function createXAxis(){
 		svgHR.select(".x.axis").remove();
 		canPlayHorses = false;
@@ -499,38 +433,29 @@
 		 yr = document.getElementById("raceYear").value;
 		if(!isNaN(yr)){
 			//Need to move points back to origin 
-
-
 			canPlayHorses = true;
 			xScaleYears = d3.scale.linear()
 			.domain([yr,2014])
 			.range([0,lgWidth - axesOffset]);
-
 			var xAxisYears = d3.svg.axis()
 			.scale(xScaleYears)
 			.ticks(2015-yr)
 			.orient("bottom");
-
 			svgHR.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate("+(axesOffset/2)+", " + (lgHeight - axesOffset/2)+ ")")
 			.call(xAxisYears);
-
-
 			d3.csv("lottery_picks_stats_data.csv", function(error,data){
 				//2014-year = start index for first player
-
 				var dataIndexStart = (2014-yr)*7;
 				var dataIndexEnd = dataIndexStart+6;
 				console.log(data[dataIndexStart]);
 				//var raceYearObject = data[dataIndex];
-
 				for(i=dataIndexStart; i<=dataIndexEnd; i++){
 					lotteryPicks.push(data[i]);
 				}
 				//var xax = "Player"
 				//console.log(lotteryPicks[0][xax])
-
 				if(shouldAddHorses){
 					console.log(lotteryPicks);
 				lotteryPicks.forEach(function(d){
@@ -550,24 +475,53 @@
 				.attr('cy', yWins(0) + axesOffset*1/2);
 			});
 				}
+			});
+			d3.json("lottery_picks_stats_data.json", function(error,data){
+
+				var line = d3.svg.line()
+			    //.interpolate("monotone")
+			    .x(function(d) { return xScaleYears(d["year"]+1) + axesOffset*1/2; })
+			    .y(function(d) { 
+			    	//make it look the same as the circles starting position
+			    	if (d["wins"] == 0) {
+			    		return yWins(d["wins"]) + axesOffset*1/2; 
+			    	}
+			    	else {
+			    		return yWins(d["wins"]) + axesOffset*2/5; 
+			    	}
+			    });
+
+				horseLines = svgHR.selectAll(".line")
+			    	.data(data[yr])
+
+			    horseLines.enter()
+			    	.append("path")
+			    	.attr("class","line")
+			    	.style("stroke","#000")
+			    	.style("fill","none")
+			    	.attr('d', function(d) {
+			    		//add a point at (0,0)
+			    		d["stats"].unshift({"year" : yr-1, "wins" : 0});
+          				return line(d["stats"]);
+        			});
 
 			});
+
+
 		}
 		else{
 			svgHR.selectAll(".horses").remove();
 			shouldAddHorses = true;
 		}
 	}
-
 	function moveHorse(){
 		if(canPlayHorses){
 		yr++;
 		yrOffset++;
-		console.log(yr + " " + yrOffset);
+		//console.log(yr + " " + yrOffset);
 		d3.selectAll(".horses")[0].forEach(function(point,i) {
-
 			var winYrIndex = 'wins' + yrOffset.toString();
-			console.log(winYrIndex);
+			//console.log(winYrIndex);
 			if(!(lotteryPicks[i][winYrIndex] === "")){
 			d3.select(point).transition().duration(1500)
 			.attr('cx', xScaleYears(yr) + axesOffset*1/2)
@@ -576,8 +530,6 @@
 			})
 		}
 	}
-
-
 </script>
 
 </body>
