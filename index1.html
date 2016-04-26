@@ -470,11 +470,13 @@
 				}
 				else{
 					d3.selectAll(".horses")[0].forEach(function(point,i) {
-				d3.select(point).transition().duration(1500)
-				.attr('cx', xScaleYears(yr) + axesOffset*1/2)
-				.attr('cy', yWins(0) + axesOffset*1/2);
-			});
+						d3.select(point).transition().duration(1500)
+						.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+						.attr('cy', yWins(0) + axesOffset*1/2);
+						});
 				}
+
+				
 			});
 			d3.json("lottery_picks_stats_data.json", function(error,data){
 
@@ -523,9 +525,9 @@
 			var winYrIndex = 'wins' + yrOffset.toString();
 			//console.log(winYrIndex);
 			if(!(lotteryPicks[i][winYrIndex] === "")){
-			d3.select(point).transition().duration(1500)
-			.attr('cx', xScaleYears(yr) + axesOffset*1/2)
-			.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
+				d3.select(point).transition().duration(1500)
+				.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+				.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
 			}
 			})
 		}
