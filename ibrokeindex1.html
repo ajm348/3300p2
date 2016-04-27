@@ -387,10 +387,10 @@
 	
 </p>
 <div id="horseRace">
-	<select id="raceYear" onchange="createXAxis()">
+	<select id="raceYear" onchange="createXAxis();lockoutSubmit()">
 		
 	</select>
-	<button type="button" onClick="moveHorse()">Play Next Year</button>
+	<button type="button" onClick="moveHorse();lockoutSubmit()" id="moveHorse">Play Next Year</button>
 </div>
 <script type="text/javascript">
 	var lotteryPicks;
@@ -522,6 +522,7 @@
 			d3.selectAll(".horses")[0].forEach(function(point,i) {
 				var selected_point = d3.select(point);
 				if((lotteryPicks[i]["stats"][yrOffset] !== undefined) && (lotteryPicks[i]["stats"][yrOffset]['year'] == yr)){
+					//line transition idea from http://jaketrent.com/post/animating-d3-line/
 					svgHR.append('line')
 					.attr('class','line')
 					.attr('x1',selected_point.attr("cx"))
@@ -542,6 +543,7 @@
 				else if(lotteryPicks[i]["stats"][yrOffset] !== undefined){
 					for (j=yrOffset; j>=0; j--){
 						if(lotteryPicks[i]["stats"][j]['year'] == yr){
+							//line transition idea from http://jaketrent.com/post/animating-d3-line/
 							svgHR.append('line')
 							.attr('class','line')
 							.attr('x1',selected_point.attr("cx"))
@@ -553,7 +555,7 @@
 							.attr('x2',xScaleYears(yr) + axesOffset*1/2)
 							.attr('y2',yWins(lotteryPicks[i]["stats"][j]['wins']) + axesOffset*2/5)
 							.attr('stroke',"#000");
-							
+
 							d3.select(point).transition().duration(1500)
 							.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 							.attr('cy', yWins(lotteryPicks[i]["stats"][j]['wins']) + axesOffset*2/5);
@@ -565,6 +567,17 @@
 		}
 		yrOffset++;
 		yr++;		
+	}
+
+	//from http://stackoverflow.com/questions/15929453/d3-js-dont-start-new-transition-until-the-previous-one-has-finished
+	function lockoutSubmit(button) {
+		button = document.getElementById("moveHorse");
+
+	    button.setAttribute('disabled', true);
+
+	    setTimeout(function(){
+	        button.removeAttribute('disabled');
+	    }, 1500)
 	}
 </script>
 
