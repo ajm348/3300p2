@@ -427,10 +427,12 @@
 	.attr("transform", "translate("+axesOffset/2+", 50)")
 	.call(yWinsAxis);
 	function createXAxis(){
+		lotteryPicks=[]
 		svgHR.select(".x.axis").remove();
 		canPlayHorses = false;
 		yrOffset =0;
 		 yr = document.getElementById("raceYear").value;
+		 console.log(yr + "  wewe ")
 		if(!isNaN(yr)){
 			//Need to move points back to origin 
 			canPlayHorses = true;
@@ -449,7 +451,7 @@
 				//2014-year = start index for first player
 				var dataIndexStart = (2014-yr)*7;
 				var dataIndexEnd = dataIndexStart+6;
-				console.log(data[dataIndexStart]);
+
 				//var raceYearObject = data[dataIndex];
 				for(i=dataIndexStart; i<=dataIndexEnd; i++){
 					lotteryPicks.push(data[i]);
@@ -457,7 +459,7 @@
 				//var xax = "Player"
 				//console.log(lotteryPicks[0][xax])
 				if(shouldAddHorses){
-					console.log(lotteryPicks);
+
 				lotteryPicks.forEach(function(d){
 					svgHR.append("circle")
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
@@ -478,36 +480,36 @@
 
 				
 			});
-			d3.json("lottery_picks_stats_data.json", function(error,data){
+			// d3.json("lottery_picks_stats_data.json", function(error,data){
 
-				var line = d3.svg.line()
-			    //.interpolate("monotone")
-			    .x(function(d) { return xScaleYears(d["year"]+1) + axesOffset*1/2; })
-			    .y(function(d) { 
-			    	//make it look the same as the circles starting position
-			    	if (d["wins"] == 0) {
-			    		return yWins(d["wins"]) + axesOffset*1/2; 
-			    	}
-			    	else {
-			    		return yWins(d["wins"]) + axesOffset*2/5; 
-			    	}
-			    });
+			// 	var line = d3.svg.line()
+			//     //.interpolate("monotone")
+			//     .x(function(d) { return xScaleYears(d["year"]+1) + axesOffset*1/2; })
+			//     .y(function(d) { 
+			//     	//make it look the same as the circles starting position
+			//     	if (d["wins"] == 0) {
+			//     		return yWins(d["wins"]) + axesOffset*1/2; 
+			//     	}
+			//     	else {
+			//     		return yWins(d["wins"]) + axesOffset*2/5; 
+			//     	}
+			//     });
 
-				horseLines = svgHR.selectAll(".line")
-			    	.data(data[yr])
+			// 	horseLines = svgHR.selectAll(".line")
+			//     	.data(data[yr])
 
-			    horseLines.enter()
-			    	.append("path")
-			    	.attr("class","line")
-			    	.style("stroke","#000")
-			    	.style("fill","none")
-			    	.attr('d', function(d) {
-			    		//add a point at (0,0)
-			    		d["stats"].unshift({"year" : yr-1, "wins" : 0});
-          				return line(d["stats"]);
-        			});
+			//     horseLines.enter()
+			//     	.append("path")
+			//     	.attr("class","line")
+			//     	.style("stroke","#000")
+			//     	.style("fill","none")
+			//     	.attr('d', function(d) {
+			//     		//add a point at (0,0)
+			//     		d["stats"].unshift({"year" : yr-1, "wins" : 0});
+   //        				return line(d["stats"]);
+   //      			});
 
-			});
+			// });
 
 
 		}
@@ -518,19 +520,34 @@
 	}
 	function moveHorse(){
 		if(canPlayHorses){
-		yr++;
 		yrOffset++;
 		//console.log(yr + " " + yrOffset);
 		d3.selectAll(".horses")[0].forEach(function(point,i) {
 			var winYrIndex = 'wins' + yrOffset.toString();
-			//console.log(winYrIndex);
-			if(!(lotteryPicks[i][winYrIndex] === "")){
+			var yrIndex = 'Year' + yrOffset.toString();
+			console.log(lotteryPicks[i][yrIndex] , yr, yrIndex);
+			console.log((!(lotteryPicks[i][winYrIndex] === "") && lotteryPicks[i][yrIndex] == yr));
+			if((!(lotteryPicks[i][winYrIndex] === "") && lotteryPicks[i][yrIndex] == yr)){
 				d3.select(point).transition().duration(1500)
 				.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 				.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
 			}
-			})
+			//
+			else if(!(lotteryPicks[i][winYrIndex] === "")){
+				for (j=yrOffset; j>=1; j--){
+					var newYrIndex = 'Year' + j.toString();
+					//console.log(lotteryPicks[i][newYrIndex])
+					if(lotteryPicks[i][newYrIndex] == yr){
+						d3.select(point).transition().duration(1500)
+					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+					.attr('cy', yWins(lotteryPicks[i][winYrIndex]) + axesOffset*2/5);
+					}
+				}
+			}
+			});
+		
 		}
+		yr++;		
 	}
 </script>
 
