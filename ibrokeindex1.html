@@ -142,6 +142,41 @@
 	  color: #009CFF;
 	}
 </style>
+<script type="text/javascript">
+	var nbaColorsAbbreviated = {"ATL": {"first": "#01244C", "third": "#D21033"},
+ "BOS": {"first": "#05854C", "second": "#EAEFE9",  "third": "#FFFFFF"},
+ "CHA": {"first": "#F26532" , "second":  "#29588B" },
+ "CHI": {"first": "#D4001F", "second": "#000000", "third":"#FFFFFF"},
+"CLE":{"first":"#9F1425","second":"#003375", "third":"#B99D6A"},
+ "DAL": {"first": "#006AB5", "second": "#F0F4F7"}, 
+"DEN": {"first":  "#4393D1", "second": "#FBB529"},
+"DET": {"first":"#ED174C", "second":"#006BB6"},
+"GSW": {"first": "#FDB927", "second": "#006bb6", "third": "#FFC33C"},
+"HOU": {"first":"#CC0000", "second":"#FFFFFF"},
+"IND": {"first": "#002E62",  "second":"#FFC225"},
+"LAC": {"first":"#EE2944", "second": "#146AA2", "third": "#FFFFFF" },
+"LAL": {"first":"#4A2583", "second":"#F5AF1B"},
+"MEM": {"first": "#001B41", "second":"#85A2C6", "third":"#FFFFFF"},
+"MIA": {"first":  "#B62630", "second":"#1E3344","third": "#FF9F00"},
+"MIL": {"first": "#00330A", "second": "#C82A39"},
+"MIN": {"first": "#015287", "second": "#000000", "third": "#EFEFEF"},
+"NJN": {"first":"#002258", "second":"#D32E4C", "third":"#EFEFF1"},
+"NOH": {"first":  "#008FC5", "second": "#FDC221"},
+"NOK": {"first":  "#008FC5", "second": "#FDC221"},
+"NOP": {"first":  "#0095CA", "second": "#1D1060", "third": "#FEBB25"},
+"NYK": {"first":"#2E66B2", "second":"#FF5C2B" },
+"OKC": {"first": "#0075C1", "second":"#E7442A","third":"#002553"},
+"ORL": {"first": "#077ABD","second":"#C5CED5","third":"#000000"},
+"PHI": {"first": "#C5003D", "second": "#000000", "third": "#C7974D" },
+"PHO": {"first": "#48286C", "second":"#FF7A31","third": "#FFBC1E" },
+"POR": {"first": "#000000", "second": "#E1393E", "third": "#B4BDC3" },
+"SAS": {"first": "#000000", "second": "#BEC8C9", "thrid": "#FFFFFF" },
+"SAC": {"first": "#743389", "second":"#DCE2E4", "thrid": "#000000"},
+"SEA": {"first":"#5831", "second":"#A71B28" },
+"TOR": {"first":"#CD1041", "second":"#ECEBE9", "third":"#000000"},
+"UTA": {"first":"#001D4D","second":"#448CCE",  "third":"#480975"},
+"WAS": {"first":"#004874","third":"#BC9B6A" }}
+</script>
 
 </head>
 
@@ -523,6 +558,13 @@
 				var selected_point = d3.select(point);
 				if((lotteryPicks[i]["stats"][yrOffset] !== undefined) && (lotteryPicks[i]["stats"][yrOffset]['year'] == yr)){
 					//line transition idea from http://jaketrent.com/post/animating-d3-line/
+
+					//Get team line color
+					//gets the team
+					var playersTeam = lotteryPicks[i]["stats"][yrOffset]["team"];
+					//Go into the NBAteam.json and get their color
+					console.log(playersTeam)
+					var playerTeamColor = nbaColorsAbbreviated[playersTeam]["first"];
 					svgHR.append('line')
 					.attr('class','line')
 					.attr('x1',selected_point.attr("cx"))
@@ -533,7 +575,7 @@
 					.duration(1500)
 					.attr('x2',xScaleYears(yr) + axesOffset*1/2)
 					.attr('y2',yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*2/5)
-					.attr('stroke',"#000");
+					.attr('stroke',playerTeamColor);
 
 					selected_point.transition().duration(1500)
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
