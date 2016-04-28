@@ -35,6 +35,7 @@ select {
 	padding: 8px;
 }
 .card:hover {
+	cursor: pointer;
 	border-color: yellow;
 	transition-duration: 0.75s;
 }
@@ -127,13 +128,8 @@ img {
 }
 
 </style>
-<title>Project 2</title>
 </head>
 <body>
-
-<h3>Project 2 -- NBA Championship Analysis</h3>
-
-<div>Data from <a href="http://basketball-reference.com">basketball-reference.com</a>.</div>
 
 <div id="main-content-wrapper">
 <div id="playerCards-wrapper-left"></div>
@@ -141,37 +137,36 @@ img {
 </div>
 <script>
 
-var nbaColors = [{"team":"Atlanta Hawks",  "first": "#01244C", "third": "#D21033"},
-{"team": "Boston Celtics", "first": "#05854C", "second": "#EAEFE9",  "third": "#FFFFFF"},
-{"team": "Charlotte Bobcats", "first": "#F26532" , "second":  "#29588B" },
-{"team": "Chicago Bulls", "first": "#D4001F", "second": "#000000", "third":"#FFFFFF"},
-{"team":"Cleveland Cavaliers","first":"#9F1425","second":"#003375", "third":"#B99D6A"},
-{"team": "Dallas Mavericks", "first": "#006AB5", "second": "#F0F4F7"}, 
-{"team":"Denver Nuggets", "first":  "#4393D1", "second": "#FBB529"},
-{"team":"Detroit Pistons",  "first":"#ED174C", "second":"#006BB6"},
-{"team":"Golden State Warriors", "first": "#FDB927", "second": "#006bb6", "third": "#FFC33C"},
-{"team":"Houston Rockets","first":"#CC0000", "second":"#FFFFFF"},
-{"team":"Indiana Pacers", "first": "#002E62",  "second":"#FFC225"},
-{"team":"Los Angeles Clippers", "first":"#EE2944", "second": "#146AA2", "third": "#FFFFFF" },
-{"team":"Los Angeles Lakers","first":"#4A2583", "second":"#F5AF1B"},
-{"team":"Memphis Grizzlies", "first": "#001B41", "second":"#85A2C6", "third":"#FFFFFF"},
-{"team":"Miami Heat", "first":  "#B62630", "second":"#1E3344","third": "#FF9F00"},
-{"team":"Milwaukee Bucks", "first": "#00330A", "second": "#C82A39"},
-{"team":"Minnesota Timberwolves", "first": "#015287", "second": "#000000", "third": "#EFEFEF"},
-{"team":"New Jersey Nets", "frist":"#002258", "second":"#D32E4C", "third":"#EFEFF1"},
-{"team":"New Orleans Hornets", "first":  "#0095CA", "second": "#1D1060", "third": "#FEBB25"},
-{"team":"New York Knicks", "first":"#2E66B2", "second":"#FF5C2B" },
-{"team":"Oklahoma City Thunder", "first": "#0075C1", "second":"#E7442A","third":"#002553"},
-{"team":"Orlando Magic", "first": "#077ABD","second":"#C5CED5","third":"#000000"},
-{"team":"Philadelphia 76ers", "first": "#C5003D", "second": "#000000", "third": "#C7974D" },
-{"team":"Phoenix Suns", "first": "#48286C", "second":"#FF7A31","third": "#FFBC1E" },
-{"team":"Portland Trail Blazers", "first": "#000000", "second": "#E1393E", "third": "#B4BDC3" },
-{"team":"San Antonio Spurs", "first": "#000000", "second": "#BEC8C9", "thrid": "#FFFFFF" },
-{"team":"Sacramento Kings", "first": "#743389", "second":"#DCE2E4", "thrid": "#000000"},
-{"team":"Toronto Raptors", "first":"#CD1041", "second":"#ECEBE9", "third":"#000000"},
-{"team":"Utah Jazz", "first":"#001D4D","second":"#448CCE",  "third":"#480975"},
-{"team":"Washington Wizards", "first":"#004874","third":"#BC9B6A" }
-]
+var nbaColors = {"Atlanta Hawks": {"first": "#01244C", "second": "#D21033"},
+ "Boston Celtics": {"first": "#05854C", "second": "#EAEFE9",  "third": "#FFFFFF"},
+ "Charlotte Bobcats": {"first": "#F26532" , "second":  "#29588B" },
+ "Chicago Bulls": {"first": "#D4001F", "second": "#000000", "third":"#FFFFFF"},
+"Cleveland Cavaliers":{"first":"#9F1425","second":"#003375", "third":"#B99D6A"},
+ "Dallas Mavericks": {"first": "#006AB5", "second": "#F0F4F7"}, 
+"Denver Nuggets": {"first":  "#4393D1", "second": "#FBB529"},
+"Detroit Pistons": {"first":"#ED174C", "second":"#006BB6"},
+"Golden State Warriors": {"first": "#FDB927", "second": "#006bb6", "third": "#FFC33C"},
+"Houston Rockets": {"first":"#CC0000", "second":"#FFFFFF"},
+"Indiana Pacers": {"first": "#002E62",  "second":"#FFC225"},
+"Los Angeles Clippers": {"first":"#EE2944", "second": "#146AA2", "third": "#FFFFFF" },
+"Los Angeles Lakers": {"first":"#4A2583", "second":"#F5AF1B"},
+"Memphis Grizzlies": {"first": "#001B41", "second":"#85A2C6", "third":"#FFFFFF"},
+"Miami Heat": {"first":  "#B62630", "second":"#1E3344","third": "#FF9F00"},
+"Milwaukee Bucks": {"first": "#00330A", "second": "#C82A39"},
+"Minnesota Timberwolves": {"first": "#015287", "second": "#000000", "third": "#EFEFEF"},
+"New Jersey Nets": {"first":"#002258", "second":"#D32E4C", "third":"#EFEFF1"},
+"New Orleans Hornets": {"first":  "#0095CA", "second": "#1D1060", "third": "#FEBB25"},
+"New York Knicks": {"first":"#2E66B2", "second":"#FF5C2B" },
+"Oklahoma City Thunder": {"first": "#0075C1", "second":"#E7442A","third":"#002553"},
+"Orlando Magic": {"first": "#077ABD","second":"#C5CED5","third":"#000000"},
+"Philadelphia 76ers": {"first": "#C5003D", "second": "#000000", "third": "#C7974D" },
+"Phoenix Suns": {"first": "#48286C", "second":"#FF7A31","third": "#FFBC1E" },
+"Portland Trail Blazers": {"first": "#000000", "second": "#E1393E", "third": "#B4BDC3" },
+"San Antonio Spurs": {"first": "#000000", "second": "#BEC8C9", "thrid": "#FFFFFF" },
+"Sacramento Kings": {"first": "#743389", "second":"#DCE2E4", "thrid": "#000000"},
+"Toronto Raptors": {"first":"#CD1041", "second":"#ECEBE9", "third":"#000000"},
+"Utah Jazz": {"first":"#001D4D","second":"#448CCE",  "third":"#480975"},
+"Washington Wizards": {"first":"#004874","second":"#BC9B6A" }}
 
 $( document ).ready(function() {
 	
@@ -182,6 +177,7 @@ $( document ).ready(function() {
 		$("#years1").append("<option value='"+value+"'>"+(value-1)+" - "+value+"</option>");
 		$("#years2").append("<option value='"+value+"'>"+(value-1)+" - "+value+"</option>");
 	}
+	$("#years1").val(1996);
 	createTeamCards(1);
 	createTeamCards(2);
 });
@@ -267,7 +263,7 @@ function createCard(player, leftorRight){
 	$("#"+player.id+leftorRight).append("<div class='back' id=back"+player.id+leftorRight+"><div class='card-wrapper'> <div class='team-logo'><img src='assets/img/"+player.Team+".png' alt='Team Logo'></div><div class='card-content'> <h1><span class='playerNumber"+leftorRight+"'>#"+player.Number+" </span>"+player.Player+"</h1><br><span class='position'>"+player.Position+"</span> "+player.Team+"<br><p class='draftYear'>"+player.Player+" "+draftMe+".</p> <div class='career-stats' id=st"+player.id+"> <p class='careerPlaying'>Career Stats</p> <table class='stats'><thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>SPG</th><th>3%</th><th>3A</th><th>FG%</th></tr></thead> <tbody> <tr><td>"+player.career_MP+"</td><td>"+player.career_PTS+"</td><td>"+player.career_ast+"</td><td>"+player.career_TRB+"</td><td>"+player.career_stl+"</td><td>"+(player['career_3p%']*100).toFixed(1)+"%</td><td>"+player['career_3pA']+"</td><td>"+ fg +"</td></tr></tbody></table></div></div></div></div>");
 	var teamColors;
 	//console.log(player.Team);
-	for (var k=0; k<nbaColors.length; k++){
+	/*for (var k=0; k<nbaColors.length; k++){
 		//console.log(nbaColors[k].team);
 		if (nbaColors[k].team == player.Team) {
 			teamColors = nbaColors[k];
@@ -281,7 +277,20 @@ function createCard(player, leftorRight){
 			$(".position").css("color", teamColors.first);
 			$("#st"+player.id).css("color", teamColors.first).css("font-size",20);
 		}
+	}*/
+	
+	teamColors = nbaColors[player.Team];
+	//console.log(teamColors);
+	$("#"+player.id+leftorRight).css("color", teamColors.second);
+	$(".position"+leftorRight).css("color", teamColors.first);
+	$(".playerNumber"+leftorRight).css("color", teamColors.first);
+	if (player.Team == "Houston Rockets" || player.team == "Boston Celtics"
+	    || player.Team == "Dallas Mavericks") {
+		$("#"+player.id+leftorRight).css("color","#aaa");
 	}
+	$(".position").css("color", teamColors.first);
+	$("#st"+player.id).css("color", teamColors.first).css("font-size",20);
+	
 	
 }
 
@@ -307,6 +316,6 @@ function flip(divID) {
 }
 
 </script>
-
+<div>Data from <a href="http://basketball-reference.com">basketball-reference.com</a>.</div>
 </body>
 </html>

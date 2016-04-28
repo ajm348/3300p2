@@ -65,19 +65,19 @@
 	}
 	
 	
-	ul li{
+	.container ul li{
 	  color: #A9A9A9;
 	  display: block;
 	  position: relative;
 	  float: left;
 	}
 	
-	ul li input[type=radio]{
+	.container ul li input[type=radio]{
 	  position: absolute;
 	  visibility: hidden;
 	}
 	
-	ul li label{
+	.container ul li label{
 	  display: block;
 	  position: relative;
 	  font-weight: 300;
@@ -90,11 +90,11 @@
 	  -webkit-transition: all 0.25s linear;
 	}
 	
-	ul li:hover label{
+	.container ul li:hover label{
 		color: #0075BF;
 	}
 	
-	ul li .check{
+	.container ul li .check{
 	  display: block;
 	  position: absolute;
 	  border: 5px solid #A9A9A9;
@@ -108,7 +108,7 @@
 		-webkit-transition: border .25s linear;
 	}
 	
-	ul li .checkBox{
+	.container ul li .checkBox{
 	  display: block;
 	  position: absolute;
 	  border: 5px solid #A9A9A9;
@@ -122,14 +122,14 @@
 		-webkit-transition: border .25s linear;
 	}
 	
-	ul li:hover .check {
+	.container ul li:hover .check {
 	  border: 5px solid #0075BF;
 	}
-	ul li:hover .checkBox {
+	.container ul li:hover .checkBox {
 	  border: 5px solid #0075BF;
 	}
 	
-	ul li .check::before {
+	.container ul li .check::before {
 	  display: block;
 	  position: absolute;
 		content: '';
@@ -143,7 +143,7 @@
 		-webkit-transition: background 0.25s linear;
 	}
 	
-	ul li .checkBox::before {
+	.container ul li .checkBox::before {
 	    display: block;
 	  position: absolute;
 		content: '';
@@ -264,28 +264,44 @@
 	var threePercent = [];
 	var avgThreeAttempts =[];
 	var avgThreePercent = [];
+	var avgAge = [];
+	
 	var svg = d3.select("#lineGraph").append("svg")
 	.attr("width", lgWidth)
 	.attr("height", lgHeight);
+	
 	var xScale = d3.scale.linear()
 				.domain([1980,2015])
 				.range([0,lgWidth - axesOffset]);
 	// var yScale3pta = d3.scale.linear()
 	// 				.domain()
 	// 				.range([lgHeight,0]);
+	
 	var xAxis = d3.svg.axis()
 	.scale(xScale)
 	.ticks(30).tickFormat(d3.format(""))
 	.orient("bottom");
+	
 	svg.append("g")
 	.attr("class", "x axis")
 	.attr("transform", "translate("+(axesOffset/2)+", " + (lgHeight - axesOffset/2)+ ")")
 	.call(xAxis);
+	
+	
 	// add the tooltip area to the webpage
 	var tooltip = d3.select("body").append("div")
 	    .attr("class", "tooltip")
 	    .style("opacity", 0);
+	    
+	    
+	var teams_data;
+	var y3PercentScale;
+	var y3AttemptScale;
+	var y3PercentAxis;
+	var y3AttemptAxis;
+	var team_logos;
 	d3.csv("p2sampledata.csv", function(error, data){
+		teams_data = data;
 		
 		data.forEach(function(d){
 			if(d.Year >= 1980){
@@ -295,18 +311,22 @@
 				threePercent.push(d.TPP);
 			}
 		})
-		var y3PercentScale = d3.scale.linear()
+		
+		y3PercentScale = d3.scale.linear()
 			.domain([0, Math.max.apply(Math, threePercent)])
 			.range([lgHeight - axesOffset, 0]);
-		var y3AttemptScale = d3.scale.linear()
+		
+		y3AttemptScale = d3.scale.linear()
 			.domain([Math.min.apply(Math, threeAttempts), Math.max.apply(Math, threeAttempts)])
 			.range([lgHeight -axesOffset, 0]);
-		var y3PercentAxis = d3.svg.axis()
+		
+		y3PercentAxis = d3.svg.axis()
 		.scale(y3PercentScale)
 		.ticks(10)
 		.tickSize(lgWidth-axesOffset)
 		.orient("right");
-		var y3AttemptAxis = d3.svg.axis()
+		
+		y3AttemptAxis = d3.svg.axis()
 		.scale(y3AttemptAxis)
 		.ticks(10)
 		.tickSize(lgWidth-axesOffset)
@@ -317,99 +337,119 @@
 		.attr("transform", "translate("+axesOffset/2+", 50)")
 		.call(y3PercentAxis);
 		
-		//add lines for the ticks to mkae the graph more readable
-		//svg.append("line").data().enter()
 		
-		for (i = 0; i<champYear.length; i++){
-			var image = "assets/img/" + champTeam[i] +  ".png";
-			svg.append("svg:image")
-			.attr('x', xScale(champYear[i]) + axesOffset*2/5)
-			.attr('y', y3PercentScale(threePercent[i]) + axesOffset*2/5)
-			.attr("height", 37)
-			.attr('width', 37)
+		team_logos = svg.selectAll("team_logos").data(data)
+		
+		team_logos.enter().append("svg:image")
+			.attr('x', function(d) { return xScale(d.Year) + axesOffset*2/5 })
+			.attr('y', function(d) { return y3PercentScale(d.TPP) + axesOffset*2/5 })
+			.attr("height", 34)
+			.attr('width', 34)
 			.attr('class', 'locale')
-			.attr("xlink:href", image);
-		}
+			.attr("xlink:href", function(d) { return "assets/img/" + d.Team + ".png" })
+			.on("mouseover", function(d){
+				tooltip.transition()
+					.duration(200)
+					.style("opacity", 0.9)
+					.style("background",nbaColors[d.Team]["first"])
+					.style("color", nbaColors[d.Team]["second"]);
+				//Year, Team, 3p%, 3pa, team age in hover
+				tooltip.html("Year: "+d.Year+"<br/>"+"Team: "+d.Team+"<br/>"+"3P%: "+d.TPP+"<br/>"+"3PA: "+d.TPA+"<br/>"+"AvgAge: "+d.avgage)
+					.style("left", (d3.event.pageX) + "px")		
+                	.style("top", (d3.event.pageY) + "px");
+                })
+            .on("mouseout", function(d) {
+            	tooltip.transition()
+            		.style("opacity",0);
+            });	
+
+			//});
+
 	});
+	
+	var avg_points;
 	function addLeagueAverage(){
 		//If box is checked then add the league averages
 		if(document.getElementById("leagueAvg").checked){
+
+			
 			d3.csv("average_3p_data.csv", function(error,data){
-			if(!loadedAvgs){
-				loadedAvgs = true;
-				data.forEach(function(d){
-					avgThreeAttempts.push(d.avgTPA);
-					avgThreePercent.push(d.avgTPP);
-				});
-			}
-				//console.log(avgThreePercent);
-				var y3PercentScale = d3.scale.linear()
-					.domain([0, Math.max.apply(Math, threePercent)])
-					.range([lgHeight - axesOffset, 0]);
-				var y3AttemptScale = d3.scale.linear()
-					.domain([0, Math.max.apply(Math, threeAttempts)])
-					.range([lgHeight -axesOffset, 0]);
-				var y3PercentAxis = d3.svg.axis()
-				.scale(y3PercentScale)
-				.ticks(10).tickSize(lgWidth-axesOffset)
-				.orient("right");
-				var y3AttemptAxis = d3.svg.axis()
-				.scale(y3AttemptAxis)
-				.ticks(10).tickSize(lgWidth-axesOffset)
-				.orient("right");
-//console.log(champYear);
-		var avg_points = d3.selectAll(".avgs")[0];
-		if (isPercent){
-			if (avg_points.length > 0) {
-				avg_points.forEach(function(point,i) {
-					d3.select(point).transition().duration(1500)
-					.attr('cy', y3PercentScale(avgThreePercent[i]) + axesOffset*1/2);
-				});
-			}
-			else {
-				for (i = 0; i<champYear.length; i++){
-					svg.append("circle")
-					.attr('cx', xScale(champYear[i]) + axesOffset*1/2)
-					.attr('cy', y3PercentScale(avgThreePercent[i]) + axesOffset*1/2)
-					.attr("r", 5)
-					.attr('class', 'avgs')
-					.style("fill", "blue")
-					.style("opacity",0.75)
-					//.style("stroke","blue")
-					.on("mouseover", function(d){
-						
-					});
+				// if(!loadedAvgs){
+				// 	loadedAvgs = true;
+				// 	data.forEach(function(d){
+				// 		avgThreeAttempts.push(d.avgTPA);
+				// 		avgThreePercent.push(d.avgTPP);
+				// 		avgAge.push(d.Age);
+				// 	});
+				// }
+			
+				//Year, 3p%, 3pa, team age in hover
+				//var avg_points = d3.selectAll(".avgs")[0];
+				if(!loadedAvgs){
+					loadedAvgs = true;
+					avg_points = svg.selectAll("avgs").data(data);
 				}
-			}
-		}
-		
-		//else do #3pa
-		else{
-			if (avg_points.length > 0) {
-				avg_points.forEach(function(point,i) {
-					d3.select(point).transition().duration(1500)
-					.attr('cy', y3AttemptScale(avgThreeAttempts[i]) + axesOffset*1/2);
-				});
-			}
-			else {
-				for (i = 0; i<champYear.length; i++){
-					
-					svg.append("circle")
-					.attr('cx', xScale(champYear[i]) + axesOffset*1/2)
-					.attr('cy', y3AttemptScale(avgThreeAttempts[i]) + axesOffset*1/2)
-					.attr("r", 5)
-					.attr('class', 'avgs')
-					.style("fill", "black");
+
+				if (document.getElementById("f-option").checked){
+					//they're already on the screen
+					if (svg.selectAll(".avgs")[0].length > 0) {
+						avg_points.transition().duration(1500)
+							.attr('cy', function(d) { return y3PercentScale(d.avgTPP) + axesOffset*1/2 });
+					}
+					else {
+						//add em all new
+						avg_points.enter().append("circle")
+							.attr('cx', function(d) { return xScale(d.Year) + axesOffset*1/2 })
+							.attr('cy', function(d) { return y3PercentScale(d.avgTPP) + axesOffset*1/2 })
+							.attr("r", 5)
+							.attr('class', 'avgs')
+							.style("fill", "blue")
+							.style("opacity", 0.7)
+							.on("mouseover", function(d){
+								tooltip.transition()
+									.duration(200)
+									.style("opacity", 0.9)
+									.style("background","#009CFF")
+									.style("color","#000")
+								//Year, Team, 3p%, 3pa, team age in hover
+								tooltip.html("Year: "+d.Year+"<br/>"+"Avg3P%: "+d.avgTPP+"<br/>"+"Avg3PA: "+d.avgTPA+"<br/>"+"AvgAge: "+d.Age)
+									.style("left", (d3.event.pageX) + "px")		
+				                	.style("top", (d3.event.pageY) + "px");
+				                })
+				            .on("mouseout", function(d) {
+				            	tooltip.transition()
+				            		.style("opacity",0);
+				            });	
+					}
 				}
-			}
+			
+			//else do #3pa
+				else {
+					if (svg.selectAll(".avgs")[0].length > 0) {
+						avg_points.transition().duration(1500)
+							.attr('cy', function(d) { return y3AttemptScale(d.avgTPA) + axesOffset*1/2 });
+					}
+					else {
+						avg_points.enter().append("circle")
+							.attr('cx', function(d) { return xScale(d.Year) + axesOffset*1/2 })
+							.attr('cy', function(d) { return y3AttemptScale(d.avgTPA) + axesOffset*1/2 })
+							.attr("r", 5)
+							.attr('class', 'avgs')
+							.style("fill", "blue");
+					}
+
+
+				}
+			});
+
 		}
-		});
-	}
 	//Box is unchecked
-	else{
+	else {
 		svg.selectAll(".avgs").remove();
 	}
+
 }
+
 	function updateData(category) {
 		if(category == 'TPA'){
 			isPercent = false;
@@ -419,22 +459,27 @@
 		}
 		//svg.selectAll(".locale").remove();
 		d3.csv("p2sampledata.csv", function(error, data){
-		var y3PercentScale = d3.scale.linear()
+		
+		 y3PercentScale = d3.scale.linear()
 			.domain([0, Math.max.apply(Math, threePercent)])
 			.range([lgHeight - axesOffset, 0]);
-		var y3AttemptScale = d3.scale.linear()
+		
+		 y3AttemptScale = d3.scale.linear()
 			.domain([0, Math.max.apply(Math, threeAttempts)])
 			.range([lgHeight -axesOffset, 0]);
-		var y3PercentAxis = d3.svg.axis()
+		
+		 y3PercentAxis = d3.svg.axis()
 		.scale(y3PercentScale)
 		.ticks(10).tickSize(lgWidth-axesOffset)
 		.orient("right");
-		var y3AttemptAxis = d3.svg.axis()
+		 y3AttemptAxis = d3.svg.axis()
 		.scale(y3AttemptScale)
 		.ticks(10).tickSize(lgWidth-axesOffset)
 		.orient("right");
+		
 		var threeData;
 		var yScale;
+		
 		if(isPercent){
 			svg.select(".y.axis").transition().duration(1500).call(y3PercentAxis);
 			threeData = threePercent;
@@ -445,21 +490,13 @@
 			threeData = threeAttempts;
 			yScale = y3AttemptScale;
 		}
+		
 		d3.selectAll(".locale")[0].forEach(function(point,i) {
 			d3.select(point).transition().duration(1500)
 			.attr('y', yScale(threeData[i]) + axesOffset*2/5)
 			});
-		// for (i = 0; i<champYear.length; i++){
-		// 	var image = "assets/img/" + champTeam[i] +  ".png";
-		// 	svg.append("svg:image")
-		// 	.attr('x', xScale(champYear[i]) + axesOffset*2/5)
-		// 	.attr('y', yScale(threeData[i]) + axesOffset*2/5)
-		// 	.attr("height", 25)
-		// 	.attr('width', 25)
-		// 	.attr('class', 'locale')
-		// 	.attr("xlink:href", image);
-		// }
 		});
+		
 		if(document.getElementById("leagueAvg").checked){
 			//svg.selectAll(".avgs").remove();
 			addLeagueAverage();
@@ -690,6 +727,8 @@
 	    }, 1500)
 	}
 </script>
+
+<?php include "player-cards-v2.html"?>
 
 </body>
 
