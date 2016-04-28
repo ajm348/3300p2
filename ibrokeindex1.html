@@ -621,7 +621,7 @@
 		}
 	}
 	function moveHorse(){
-		if(canPlayHorses){
+		if(canPlayHorses && yr <2015){
 			d3.selectAll(".horses")[0].forEach(function(point,i) {
 				var selected_point = d3.select(point);
 				if((lotteryPicks[i]["stats"][yrOffset] !== undefined) && (lotteryPicks[i]["stats"][yrOffset]['year'] == yr)){
@@ -633,6 +633,7 @@
 					//Go into the NBAteam.json and get their color
 					console.log(playersTeam)
 					var playerTeamColor = nbaColorsAbbreviated[playersTeam]["first"];
+					
 					svgHR.append('line')
 					.attr('class','line')
 					.attr('x1',selected_point.attr("cx"))
@@ -648,6 +649,9 @@
 					selected_point.transition().duration(1500)
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 					.attr('cy', yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*2/5);
+					if (yrOffset == 0) {
+						svgHR.selectAll(".line").remove()
+					}
 				}
 			//
 				else if(lotteryPicks[i]["stats"][yrOffset] !== undefined){
