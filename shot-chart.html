@@ -1,10 +1,4 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-    <title>3300 Project 2</title>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<div id="shot-chart-page">
     <style type="text/css">
         .shot-chart-court *{
             fill:transparent;
@@ -27,39 +21,63 @@
         circle {
             z-index: -100;
         }
+	svg {
+	    background: transparent;
+	}
         
+	#circle0 {
+	    stroke-width: 4px;
+	}
+	#circle1 {
+	    stroke-width: 52px;
+	}
+	#circle2 {
+	    stroke-width: 52px;
+	}
+	#circle3 {
+	    stroke-width: 52px;
+	}
+	#circle4 {
+	    stroke-width: 52px;
+	}
+	
     </style>
-</head>
-<body>
-    <h1>Only works right now for year>2001</h1>
-    <p>it isnt close to being done, but this is what i have</p>
+    <div id='top-wrapper'></div>
+    
     <div id="chart1">
         <h3>% of shots taken by range</h3>
         <svg class='shot-chart-1'></svg>
     </div>
-    <div id="chart2">
-        <h3>FG% by range</h3>
-        <svg class='shot-chart-2'></svg>
-    </div>
 <script>
     
+    var nbaChampString=[];
+    
     $( document ).ready(function() {
+	d3.csv("p2sampledata.csv", function(error, data){
+	    data.forEach(function(d){
+		nbaChampString.push(d.Year+" "+d.Team);
+	    });
+	    
+	    var countChamps = 0;
+	    $("#top-wrapper").append("<select id='shot-chart-select' onchange='setYear()'></select>");
+	    for (var value=2015; value>=1980;value--){
+		    $("#shot-chart-select").append("<option value='"+value+"'>"+nbaChampString[countChamps]+"</option>");
+		    //console.log(nbaChampString[countChamps]);
+		    countChamps++;
+	    }
+	    
+	    setYear();
 	
-	
-	$("body").append("<select id='years1' onchange='setYear()'></select>");
-	for (var value=2015; value>1999;value--){
-		$("#years1").append("<option value='"+value+"'>"+(value-1)+" - "+value+"</option>");
-    	}
+	});
     });
     
     function setYear() {
-	console.log()
-	var inputYear = $("#years1").val();
+	var inputYear = $("#shot-chart-select").val();
 	updateChart(inputYear);
     }
     
     //court drawing from http://jsfiddle.net/ramnathv/p6z74yv0/
-    var svg = d3.select(".shot-chart-1");
+    var svgShotChart = d3.select(".shot-chart-1");
     opts = {
     // basketball hoop diameter (ft)
     basketDiameter: 1.5,
@@ -285,99 +303,161 @@
     function updateChart(yr){
 	
     d3.csv("p2sampledata.csv", function(error, data){
-        var distances = [10,17,22,27,33];
+        
+	var distances = [10,13,18.40,23.8,29.2];
+	
 	$(".shot-chart-data").empty();
         data.forEach(function(d){
+	    
+	    if (yr>2000) {
+		
                 if(d.Year == yr){
                     
                     var teamShotsFGP = [d["fgpct0-3"],d["fgpct3-10"],d["fgpct10-16"],d["fgpct16<3"],d["fgpct3"]];
                     var teamShots = [d['pctoffg0-3'],d['pctoffg3-10'],d['pctoffg10-16'],d['pctoffg16<3'],d['pctoffg3']];
                     
-                    
-                    /*
-                    //this is code to make the outline look like the 3 pt line but they are not centered yet;
                     for (var i=4;i>=0;i--){
-                        var sizeScale = i*2;
-                    var base = d3.select(".shot-chart-1")
-                        .attr('width', o.width)
-                        .attr('height', o.height)
-                        .append('g')
-                        .attr('class', 'shot-chart-heat')
-                        .attr('transform','translate('+xScaleCourt(0)+','+yScaleCourt(5)+')')
-                        .attr("stroke", function() {
-                            console.log(" "+i+ ": "+teamShots[i]+", color: "+colorScale(teamShots[i]));
+                        d3.select(".shot-chart-1").append('g').attr("class","shot-chart-data").append("ellipse")
+                        .attr("cx", xScaleCourt(0))
+                        .attr("cy", yScaleCourt(1)-27)
+                        .attr("rx", 10*distances[i] - 25)
+			.attr("ry", 10*distances[i] - 16)
+			.attr("id","circle"+i)
+			.style("opacity",0.5)
+			.style("fill", function() {
+				if (i==0) {
+				    return colorScale(teamShots[0]);
+				}
+				else{
+				    return "none";
+				}
+			    })
+			.style("stroke",function() {
+                            //console.log(" "+i+ ": "+teamShots[i]+", color: "+colorScale(teamShots[i]));
                             //console.log(Math.log(teamShots[i]));
                             //return colorScale(Math.log(teamShots[i]));
                             return colorScale(teamShots[i]);
                         });
                         
-                        base.attr("transform","scale("+sizeScale+","+sizeScale+")")
-                            .style("fill" ,function() {
-                            console.log(" "+i+ ": "+teamShots[i]+", color: "+colorScale(teamShots[i]));
-                            //console.log(Math.log(teamShots[i]));
-                            //return colorScale(Math.log(teamShots[i]));
-                            return colorScale(teamShots[i]);
-                            })
-                            .style("opacity",0.5);
-                        
-                            
-                    var tpAngle = Math.atan(o.threePointSideRadius / 
-                        (o.threePointCutoffLength - o.basketProtrusionLength - o.basketDiameter/2));
-                      appendArcPath(base, o.threePointRadius, -1 * tpAngle, tpAngle)
-                        .attr('class', 'shot-chart-court-3pt-line')
-                        .attr("transform", "translate(" + (o.courtWidth / 2) + ", " + 
-                          (o.visibleCourtLength - o.basketProtrusionLength - o.basketDiameter / 2) + 
-                          ")");
-                        
-                      [1, -1].forEach(function (n) {
-                        base.append("line")
-                          .attr('class', 'shot-chart-court-3pt-line')
-                          .attr("x1", o.courtWidth / 2 + o.threePointSideRadius * n)
-                          .attr("y1", o.visibleCourtLength - o.threePointCutoffLength)
-                          .attr("x2", o.courtWidth / 2 + o.threePointSideRadius * n)
-                          .attr("y2", o.visibleCourtLength);
-                      });
-                    }
-                    */
-                    for (var i=4;i>=0;i--){
-                        d3.select(".shot-chart-1").append('g').attr("class","shot-chart-data").append("circle")
-                        .attr("cx", xScaleCourt(0))
-                        .attr("cy", yScaleCourt(1))
-                        .attr("r", 10*distances[i] - 5)
-                        .style("fill",function() {
-                            console.log(" "+i+ ": "+teamShots[i]+", color: "+colorScale(teamShots[i]));
-                            //console.log(Math.log(teamShots[i]));
-                            //return colorScale(Math.log(teamShots[i]));
-                            return colorScale(teamShots[i]);
-                        })
-                        .style("opacity",0.5);
-                        
-                        d3.select(".shot-chart-1").append("text").text((teamShots[i]*100).toFixed(2)  + "%").attr("class","shot-chart-data")
+			
+			//text ----------
+                        d3.select(".shot-chart-1").append("text")
+			.text((teamShots[i]*100).toFixed(2)  + "%").attr("class","shot-chart-data")
                         .attr("x", xScaleCourt(0))
                         .attr("y", yScaleCourt(i*6+5))
                         .attr("text-anchor","middle");
                     }
-                    
-                    for (var i=4;i>=0;i--){
-                        d3.select(".shot-chart-2").append('g').attr("class","shot-chart-data").append("circle").attr("class","shot-chart-data")
-                        .attr("cx", xScaleCourt(0))
-                        .attr("cy", yScaleCourt(1))
-                        .attr("r", 10*distances[i] - 5)
-                        .style("fill",function() {
-                            console.log(" "+i+ ": "+teamShotsFGP[i]+", color: "+colorScaleFG(teamShotsFGP[i]));
-                            //console.log(Math.log(teamShots[i]));
-                            //return colorScale(Math.log(teamShots[i]));
-                            return colorScaleFG(teamShotsFGP[i]);
-                        })
-                        .style("opacity",0.5);
-                        
-                        d3.select(".shot-chart-2").append("text").text((teamShotsFGP[i]*100).toFixed(2)  + "%").attr("class","shot-chart-data")
-                        .attr("x", xScaleCourt(0))
-                        .attr("y", yScaleCourt(i*6+5))
-                        .attr("text-anchor","middle");
-                    }
-                    
+		    
+		    //cheating on the styling to make it work left side
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(-16.7))
+		    .attr("y",yScaleCourt(13.5))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill","white");
+		    
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(-16.7))
+		    .attr("y",yScaleCourt(13.51))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill",colorScale(teamShots[4]))
+		    .style("opacity",0.5);
+		    
+		    //cheating on the styling to make it work right side
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(14.17))
+		    .attr("y", yScaleCourt(13.5))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill","white");
+		    
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(14.17))
+		    .attr("y",yScaleCourt(13.5))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill",colorScale(teamShots[4]))
+		    .style("opacity",0.5);
                 }
+	    }
+	    else {
+		
+		if(d.Year == yr){
+		    
+		    var totalShots = Number(d["O2PA"])+Number(d["O3PA"]);
+                    var teamShots = [Number(d["O2PA"])/totalShots, Number(d["O3PA"])/totalShots];
+			
+			//inside 3pt line
+                        d3.select(".shot-chart-1").append('g').attr("class","shot-chart-data").append("ellipse")
+                        .attr("cx", xScaleCourt(0))
+                        .attr("cy", yScaleCourt(1)-27)
+                        .attr("rx", 10*distances[3] - 25)
+			.attr("ry", 10*distances[3] - 16)
+			.attr("id","circle"+0)
+			.style("opacity",0.5)
+			.style("fill", colorScale(teamShots[0]))
+			.style("stroke",colorScale(teamShots[0]))
+			.style("stroke-width",50);
+			//text ----------
+                        d3.select(".shot-chart-1").append("text")
+			.text((teamShots[0]*100).toFixed(2)  + "%").attr("class","shot-chart-data")
+                        .attr("x", xScaleCourt(0))
+                        .attr("y", yScaleCourt(15))
+                        .attr("text-anchor","middle");
+			
+			//outside 3pt line
+			d3.select(".shot-chart-1").append('g').attr("class","shot-chart-data").append("ellipse")
+                        .attr("cx", xScaleCourt(0))
+                        .attr("cy", yScaleCourt(1)-27)
+                        .attr("rx", 10*distances[4] - 25)
+			.attr("ry", 10*distances[4] - 16)
+			.attr("id","circle"+4)
+			.style("opacity",0.5)
+			.style("fill", "none")
+			.style("stroke",colorScale(teamShots[1]));
+			//text ----------
+                        d3.select(".shot-chart-1").append("text")
+			.text((teamShots[1]*100).toFixed(2)  + "%").attr("class","shot-chart-data")
+                        .attr("x", xScaleCourt(0))
+                        .attr("y", yScaleCourt(28))
+                        .attr("text-anchor","middle");
+		    
+		    //cheating on the styling to make it work left side
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(-16.7))
+		    .attr("y",yScaleCourt(13.5))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill","white");
+		    
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(-16.7))
+		    .attr("y",yScaleCourt(13.51))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill", colorScale(teamShots[1]))
+		    .style("opacity",0.5);
+		    
+		    //cheating on the styling to make it work right side
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(14.17))
+		    .attr("y", yScaleCourt(13.5))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill","white");
+		    
+		    d3.select(".shot-chart-1").append("rect")
+		    .attr("x", xScaleCourt(14.17))
+		    .attr("y",yScaleCourt(13.5))
+		    .attr("width",40)
+		    .attr("height",180)
+		    .style("fill",colorScale(teamShots[1]))
+		    .style("opacity",0.5);
+                }
+		
+		
+	    }
         });
         
         
@@ -385,8 +465,4 @@
     
     }    
 </script>
-
-
-
-</body>
-</html>
+</div>

@@ -1,4 +1,4 @@
-Year,Team,TPA,TPP,2PA,2P%,O3PA,O3P%,O2PA,O2P%,pctoffg0-3,pctoffg3-10,pctoffg10-16,pctoffg16<3,pctoffg3,fgpct0-3,fgpct3-10,fgpct10-16,fgpct16<3,fgpct3,avgage
+Year,Team,TPA,TPP,O2PA,2P%,O3PA,O3P%,O2PA,O2P%,pctoffg0-3,pctoffg3-10,pctoffg10-16,pctoffg16<3,pctoffg3,fgpct0-3,fgpct3-10,fgpct10-16,fgpct16<3,fgpct3,avgage
 2015,Golden State Warriors,2217,0.398,4920,0.514,1757,0.337,5327,0.458,0.286,0.145,0.104,0.154,0.311,0.675,0.371,0.443,0.397,0.398,26.6
 2014,San Antonio Spurs,1757,0.397,5087,0.517,1500,0.353,5476,0.469,0.287,0.185,0.09,0.181,0.257,0.673,0.437,0.389,0.413,0.397,28.9
 2013,Miami Heat,1809,0.396,4539,0.536,1783,0.35,4850,0.473,0.297,0.127,0.099,0.192,0.285,0.704,0.401,0.387,0.441,0.396,30.3

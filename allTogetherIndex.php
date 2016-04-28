@@ -507,6 +507,8 @@
 	
 </p>
 
+<?php include "player-cards-v2.html"?>
+
 <style>
     /*style the horseRace graph*/
     #horseRaceSVG {
@@ -728,7 +730,7 @@
 	}
 </script>
 
-<?php include "player-cards-v2.html"?>
+<?php include "shot-chart.html"?>
 
 </body>
 
