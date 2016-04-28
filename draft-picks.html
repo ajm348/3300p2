@@ -636,6 +636,7 @@ function createCard(player, leftorRight){
 	var draftMe = " was drafted in "+player.Draft_Year;
 	
 	
+	
 	$("#"+player.id+leftorRight).append("<div class='back' id=back"+player.id+leftorRight+"><div class='card-wrapper'> <div class='team-logo'><img src='assets/img/"+player.Team+".png' alt='Team Logo'></div><div class='card-content'> <h1><span class='playerNumber"+leftorRight+"'>#"+player.Number+" </span>"+player.Player+"</h1><br><span class='position'>"+player.Position+"</span> "+player.Team+"<br><p class='draftYear'>"+player.Player+" "+draftMe+".</p> <div class='career-stats' id=st"+player.id+"> <p class='careerPlaying'>Career Stats</p> <table class='stats'><thead><tr><th>MPG</th><th>PPG</th><th>APG</th><th>RPG</th><th>SPG</th><th>3%</th><th>3A</th><th>FG%</th></tr></thead> <tbody> <tr><td>"+player.career_MP+"</td><td>"+player.career_PTS+"</td><td>"+player.career_ast+"</td><td>"+player.career_TRB+"</td><td>"+player.career_stl+"</td><td>"+(player['career_3p%']*100).toFixed(1)+"%</td><td>"+player['career_3pA']+"</td><td>"+ (d3.format(".2f")(fg)) +"</td></tr></tbody></table></div></div></div></div>");
 	var teamColors;
 	//console.log(player.Team);
