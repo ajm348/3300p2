@@ -6,12 +6,6 @@
 	    background: transparent;
 	    margin-top: -2em;
 	}
-	.tooltip {
-	  position: absolute;
-	  width: 200px;
-	  height: 28px;
-	  pointer-events: none;
-	}
 	.axis path{
 	    fill: none;
 	    display: none;
@@ -25,7 +19,7 @@
 	.tooltip {
 	  position: absolute;
 	  width: 200px;
-	  height: 28px;
+	  height: 60px;
 	  pointer-events: none;
 	}
 	
@@ -253,6 +247,8 @@
 
 
 <script type="text/javascript">
+	var nbaTeamChamp = {1985:"LAL",1986:"BOS",1987:"LAL",1988:"LAL",1989:"DET",1990:"DET",1991:"CHI",1992:"CHI",1993:"CHI",1994:"HOU",1995:"HOU",1996:"CHI",1997:"CHI",1998:"CHI",1999:"SAS",2000:"LAL",2001:"LAL",2002:"LAL",2003:"SAS",2004:"DET",2005:"SAS",2006:"MIA",2007:"SAS",2008:"BOS",2009:"LAL",2010:"LAL",2011:"DAL",2012:"MIA",2013:"MIA",2014:"SAS", 2015:"GSW"};
+	
 	var isPercent = true;
 	var loadedAvgs = false;
 	var lgHeight = 750;
@@ -652,12 +648,42 @@
 					if (yrOffset == 0) {
 						svgHR.selectAll(".line").remove()
 					}
+
+					if(nbaTeamChamp[yr] == playersTeam){
+					svgHR.append("svg:image")
+					.attr('x', xScaleYears(yr) + axesOffset*2/5)
+					.attr('y', yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*3/10)
+					.attr("height", 25)
+					.attr('width', 25)
+					.attr("text-anchor","middle")
+					.attr('class', 'trophy')
+					.attr("xlink:href", "assets/img/nbatrophy.png")
+					.on("mouseover", function(d){
+
+						tooltip.transition()
+						.duration(200)
+						.style("opacity", 0.9)
+						.style("background",playerTeamColor)
+						.style("color", nbaColorsAbbreviated[playersTeam]["second"]);
+					//Year, Team, 3p%, 3pa, team age in hover
+					tooltip.html("Year: "+(yr-1)+"<br/>"+"Team: "+playersTeam+"<br/>"+"Wins: "+lotteryPicks[i]["stats"][yrOffset-1]['wins'])
+						.style("left", (d3.event.pageX) + "px")		
+		            	.style("top", (d3.event.pageY) + "px");
+						})
+					.on("mouseout", function(d) {
+		            	tooltip.transition()
+		            	.style("opacity",0);
+		            });	
+					}
+
+
 				}
 			//
 				else if(lotteryPicks[i]["stats"][yrOffset] !== undefined){
 					for (j=yrOffset; j>=0; j--){
 						if(lotteryPicks[i]["stats"][j]['year'] == yr){
 							//line transition idea from http://jaketrent.com/post/animating-d3-line/
+
 							svgHR.append('line')
 							.attr('class','line')
 							.attr('x1',selected_point.attr("cx"))
