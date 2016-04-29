@@ -4,6 +4,14 @@
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <style>
+    .titles {
+	width: 100%;
+	right:0;
+    }
+    .titles h4{
+	font-size: 20px;
+	margin-bottom: .5em;
+    }
 	svg {
 	    background: transparent;
 	    margin-top: -2em;
@@ -251,7 +259,13 @@
 </head>
 
 <body>
-
+    <div class="titles">
+<h4>NBA Championship Teams' 3's by Year:</h4>
+<p class='details'>This graph shows the nba championhsip teams for the last 35 years. On the y axis you can see each teams' 3 point % that year.
+You can toggle between 3 point % and 3 point attemtps. <br>Can you see how the league is changing for 3 point attempts?
+In addition to the championship teams' 3pt stats, you can add the league average for both catagories as well to see how the champion
+that year compares to the league. Finally, you can check out the stats for the team by hovering over the team logo on the graph.</p>
+</div>
 <div class="container">
   <ul>
   <li>
@@ -559,7 +573,28 @@
 	
 </p>
 <div id="shot-chart-page">
+    <div class='titles' style="position: absolute;left:10px; width: 25%;">
+<h4>Shot Chart</h4>
+<p class='details'>Here you can choose the Championship Team and Year to see where they took the majority of their shots. Select from the
+dropdown menu a team you want to see and check out the baksetball court to see what percentage of their total shots they took from a given distance.</p>
+</div>
     <style type="text/css">
+	
+	#shot-chart-page {
+	    width: 100%;
+	    height: 600px;
+	}
+	#top-wrapper{
+	    margin-left: -100px;
+	    text-align: center;
+	}
+	#chart1 {
+	    margin-left: -100px;
+	    text-align: center;
+	}
+	#chart1 h3 {
+	    margin-bottom: 4em;
+	}
         .shot-chart-court *{
             fill:transparent;
             stroke:#333;
@@ -581,9 +616,6 @@
         circle {
             z-index: -100;
         }
-	svg {
-	    background: transparent;
-	}
         
 	#circle0 {
 	    stroke-width: 4px;
@@ -1023,6 +1055,8 @@
         
     });
     
+    d3.select(".shot-chart-1").style("transform", "scale(1.4,1.4)");
+    
     }    
 </script>
 </div>
@@ -1041,7 +1075,7 @@ div {margin: 0;}
 
 #playerCards-wrapper-left {
 	display: inline-block;
-	width: 45%;
+	width: 50%;
 	margin: 8px;
 }
 
@@ -1123,7 +1157,7 @@ img {
 #playerCards-wrapper-right {
 	display: inline-block;
 	position: absolute;
-	width: 45%;
+	width: 50%;
 	margin: 8px;
 	
 }
@@ -1152,10 +1186,15 @@ img {
 }
 
 </style>
-</head>
-<body>
+
 
 <div id="main-content-wrapper">
+    <div class='titles' style="width: 92%;">
+<h4>Championship Team Starting 5</h4>
+<p>Here you have the opportunity to compare championship teams starting 5 players. Choose from the dropdown menu teams who you
+want to see and check out how thier players compare. Do they have players that shoot more 3's or 2's? Click on a player's card to
+see their career stats and when they were drafted.</p>
+</div>
 <div id="playerCards-wrapper-left"></div>
 <div id="playerCards-wrapper-right"></div>
 </div>
@@ -1351,6 +1390,8 @@ function flip(divID) {
     
     #top-level {
 	text-align: center;
+	margin-top: 3em;
+	margin-bottom: -1em;
     }
     #top-level button {
 	padding:5px;
@@ -1359,6 +1400,14 @@ function flip(divID) {
     }
     
 </style>
+<div class='titles' style="width: 90%;margin-left: 20px;">
+<h4>Draft Players Effects on Teams' Record</h4>
+<p>This graph is like a stop action film. First you choose the Draft year you want to see (to find a player you like see
+the back of the player cards above for their draft year). After you choose a draft year you press the play button to see
+the effet the player has on 1 year. Hover over each circle to see who it is and some of their stats. Continue pressing play to
+see the next year and then again for the next etc. If a player helped his team win a title in a specific year, a trophy will appear on that year when they get there in the "stop action film."
+Notable draft years are Steph Curry: 2007, Dwayne Wade, Lebron James, and Chris Bosh: 2003, and Kobe Bryant 1996.</p>
+</div>
 <div id="horseRace">
     <div id="top-level">
 	<select id="raceYear" onchange="createXAxis();lockoutSubmit()">
@@ -1631,7 +1680,9 @@ var playersTeam = d["stats"][yrOffset]["team"];
 	    }, 1500)
 	}
 </script>
-<div>Data from <a href="http://basketball-reference.com">basketball-reference.com</a>.</div>
+<div>
+    <p>In conclusion our story is simple- 2 big factors that play into winning an NBA Championship in the new NBA is 3 point shooting and getting great players in the draft. Thank you!</p>
+    <br>Data from <a href="http://basketball-reference.com">basketball-reference.com</a> and <a href="http://nba.com">nba.com</a></div>
 </body>
 
 </html>

@@ -203,10 +203,11 @@ function createTeamCards(leftOrRight){
 }
 
 function draftIdea(player) {
-	var drafted;
+	var drafted = "";
 	
 	d3.csv("lottery_picks_data.csv", function (error, rows) {	
 		if (error) {console.log(error);}
+		
 		playersStats = d3.map(rows, function (year) { return year.Year; });
 		//console.log(rows);
 		for (var i=0; i<rows.length; i++){
@@ -215,31 +216,32 @@ function draftIdea(player) {
 			if (rows[i].Year == player.Draft_Year) {
 				
 				if (player.Player == rows[i].P1) {
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the first overall pick.";
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the first overall pick.";
 				}
 				if (player.Player == rows[i].P2) {
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the second overall pick.";
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the second overall pick.";
 				}
 				if (player.Player == rows[i].P3) {
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the third overall pick.";
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the third overall pick.";
 				}
 				if (player.Player == rows[i].P4) {
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the fourth overall pick.";
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the fourth overall pick.";
 				}
 				if (player.Player == rows[i].P5) {
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the fifth overall pick.";
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the fifth overall pick.";
 				}
 				if (player.Player == rows[i].P6) {
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the sixth overall pick.";
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the sixth overall pick.";
 				}
 				if (player.Player == rows[i].P7) {
-					console.log(" was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the seventh overall pick.");
-					return " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the seventh overall pick.";
+					//console.log(" was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the seventh overall pick.");
+					drafted =  " was drafted in "+player.Draft_Year+" by the" + rows[i].P1Team+" with the seventh overall pick.";
 				}
 				else {
-					return " was drafted in "+player.Draft_Year+"by the"+ rows[i].P1Team+".";
+					drafted =  " was drafted in "+player.Draft_Year+"by the"+ rows[i].P1Team+".";
 				}
 			}
+			
 		}
 	});
 	
@@ -256,7 +258,7 @@ function createCard(player, leftorRight){
 	var fg = "??";
 	
 	//this doesnt work yet
-	//var draftMe = draftIdea(player);
+	draftMe = draftIdea(player);
 	var draftMe = " was drafted in "+player.Draft_Year;
 	
 	
