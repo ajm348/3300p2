@@ -9,7 +9,7 @@
 	.tooltip {
 	  position: absolute;
 	  width: 200px;
-	  height: 28px;
+	  height: 75px;
 	  pointer-events: none;
 	}
 	.axis path{
@@ -20,13 +20,6 @@
 	    fill: none;
 	    stroke: #c1c1c1;
 	    shape-rendering: crispEdges;
-	}
-	
-	.tooltip {
-	  position: absolute;
-	  width: 200px;
-	  height: 28px;
-	  pointer-events: none;
 	}
 	
 	/*graph styling time*/
@@ -183,6 +176,7 @@
 	}
 </style>
 <script type="text/javascript">
+	var nbaTeamChamp = {1985:"LAL",1986:"BOS",1987:"LAL",1988:"LAL",1989:"DET",1990:"DET",1991:"CHI",1992:"CHI",1993:"CHI",1994:"HOU",1995:"HOU",1996:"CHI",1997:"CHI",1998:"CHI",1999:"SAS",2000:"LAL",2001:"LAL",2002:"LAL",2003:"SAS",2004:"DET",2005:"SAS",2006:"MIA",2007:"SAS",2008:"BOS",2009:"LAL",2010:"LAL",2011:"DAL",2012:"MIA",2013:"MIA",2014:"SAS", 2015:"GSW"};
 	var nbaColorsAbbreviated = {"ATL": {"first": "#01244C", "third": "#D21033"},
  "BOS": {"first": "#05854C", "second": "#EAEFE9",  "third": "#FFFFFF"},
  "CHA": {"first": "#F26532" , "second":  "#29588B" },
@@ -215,7 +209,39 @@
 "SEA": {"first":"#5831", "second":"#A71B28" },
 "TOR": {"first":"#CD1041", "second":"#ECEBE9", "third":"#000000"},
 "UTA": {"first":"#001D4D","second":"#448CCE",  "third":"#480975"},
-"WAS": {"first":"#004874","third":"#BC9B6A" }}
+"WAS": {"first":"#004874","third":"#BC9B6A" }};
+
+
+	var nbaColors = {"Atlanta Hawks": {"first": "#01244C", "second": "#D21033"},
+ "Boston Celtics": {"first": "#05854C", "second": "#EAEFE9",  "third": "#FFFFFF"},
+ "Charlotte Bobcats": {"first": "#F26532" , "second":  "#29588B" },
+ "Chicago Bulls": {"first": "#D4001F", "second": "#000000", "third":"#FFFFFF"},
+"Cleveland Cavaliers":{"first":"#9F1425","second":"#003375", "third":"#B99D6A"},
+ "Dallas Mavericks": {"first": "#006AB5", "second": "#F0F4F7"}, 
+"Denver Nuggets": {"first":  "#4393D1", "second": "#FBB529"},
+"Detroit Pistons": {"first":"#ED174C", "second":"#006BB6"},
+"Golden State Warriors": {"first": "#FDB927", "second": "#006bb6", "third": "#FFC33C"},
+"Houston Rockets": {"first":"#CC0000", "second":"#FFFFFF"},
+"Indiana Pacers": {"first": "#002E62",  "second":"#FFC225"},
+"Los Angeles Clippers": {"first":"#EE2944", "second": "#146AA2", "third": "#FFFFFF" },
+"Los Angeles Lakers": {"first":"#4A2583", "second":"#F5AF1B"},
+"Memphis Grizzlies": {"first": "#001B41", "second":"#85A2C6", "third":"#FFFFFF"},
+"Miami Heat": {"first":  "#B62630", "second":"#1E3344","third": "#FF9F00"},
+"Milwaukee Bucks": {"first": "#00330A", "second": "#C82A39"},
+"Minnesota Timberwolves": {"first": "#015287", "second": "#000000", "third": "#EFEFEF"},
+"New Jersey Nets": {"first":"#002258", "second":"#D32E4C", "third":"#EFEFF1"},
+"New Orleans Hornets": {"first":  "#0095CA", "second": "#1D1060", "third": "#FEBB25"},
+"New York Knicks": {"first":"#2E66B2", "second":"#FF5C2B" },
+"Oklahoma City Thunder": {"first": "#0075C1", "second":"#E7442A","third":"#002553"},
+"Orlando Magic": {"first": "#077ABD","second":"#C5CED5","third":"#000000"},
+"Philadelphia 76ers": {"first": "#C5003D", "second": "#000000", "third": "#C7974D" },
+"Phoenix Suns": {"first": "#48286C", "second":"#FF7A31","third": "#FFBC1E" },
+"Portland Trail Blazers": {"first": "#000000", "second": "#E1393E", "third": "#B4BDC3" },
+"San Antonio Spurs": {"first": "#000000", "second": "#BEC8C9", "thrid": "#FFFFFF" },
+"Sacramento Kings": {"first": "#743389", "second":"#DCE2E4", "thrid": "#000000"},
+"Toronto Raptors": {"first":"#CD1041", "second":"#ECEBE9", "third":"#000000"},
+"Utah Jazz": {"first":"#001D4D","second":"#448CCE",  "third":"#480975"},
+"Washington Wizards": {"first":"#004874","second":"#BC9B6A" }};
 </script>
 
 </head>
@@ -349,7 +375,7 @@
 			.attr("xlink:href", function(d) { return "assets/img/" + d.Team + ".png" })
 			.on("mouseover", function(d){
 				tooltip.transition()
-					.duration(200)
+					.duration(1000)
 					.style("opacity", 0.9)
 					.style("background",nbaColors[d.Team]["first"])
 					.style("color", nbaColors[d.Team]["second"]);
@@ -620,47 +646,18 @@
 
 				
 			});
-			// d3.json("lottery_picks_stats_data.json", function(error,data){
-
-			// 	var line = d3.svg.line()
-			//     //.interpolate("monotone")
-			//     .x(function(d) { return xScaleYears(d["year"]+1) + axesOffset*1/2; })
-			//     .y(function(d) { 
-			//     	//make it look the same as the circles starting position
-			//     	if (d["wins"] == 0) {
-			//     		return yWins(d["wins"]) + axesOffset*1/2; 
-			//     	}
-			//     	else {
-			//     		return yWins(d["wins"]) + axesOffset*2/5; 
-			//     	}
-			//     });
-
-			// 	horseLines = svgHR.selectAll(".line")
-			//     	.data(data[yr])
-
-			//     horseLines.enter()
-			//     	.append("path")
-			//     	.attr("class","line")
-			//     	.style("stroke","#000")
-			//     	.style("fill","none")
-			//     	.attr('d', function(d) {
-			//     		//add a point at (0,0)
-			//     		d["stats"].unshift({"year" : yr-1, "wins" : 0});
-   //        				return line(d["stats"]);
-   //      			});
-
-			// });
 
 
 		}
 		else{
 			svgHR.selectAll(".horses").remove();
 			svgHR.selectAll(".line").remove();
+			svgHR.selectAll(".trophy").remove();
 			shouldAddHorses = true;
 		}
 	}
 	function moveHorse(){
-		if(canPlayHorses){
+		if(canPlayHorses && yr <2015){
 			d3.selectAll(".horses")[0].forEach(function(point,i) {
 				var selected_point = d3.select(point);
 				if((lotteryPicks[i]["stats"][yrOffset] !== undefined) && (lotteryPicks[i]["stats"][yrOffset]['year'] == yr)){
@@ -672,6 +669,7 @@
 					//Go into the NBAteam.json and get their color
 					console.log(playersTeam)
 					var playerTeamColor = nbaColorsAbbreviated[playersTeam]["first"];
+					
 					svgHR.append('line')
 					.attr('class','line')
 					.attr('x1',selected_point.attr("cx"))
@@ -687,12 +685,49 @@
 					selected_point.transition().duration(1500)
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 					.attr('cy', yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*2/5);
+					if (yrOffset == 0) {
+						svgHR.selectAll(".line").remove()
+					}
+
+					if(nbaTeamChamp[yr] == playersTeam){
+					var displayYear = []
+					displayYear.push(yr);
+					var displayWins = []
+					displayWins.push(lotteryPicks[i]["stats"][yrOffset]['wins'])
+					svgHR.append("svg:image")
+					.attr('x', xScaleYears(yr) + axesOffset*2/5)
+					.attr('y', yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*3/10)
+					.attr("height", 25)
+					.attr('width', 25)
+					.attr("text-anchor","middle")
+					.attr('class', 'trophy')
+					.attr("xlink:href", "assets/img/nbatrophy.png")
+					.on("mouseover", function(d){
+
+						tooltip.transition()
+						.duration(200)
+						.style("opacity", 0.9)
+						.style("background",playerTeamColor)
+						.style("color", nbaColorsAbbreviated[playersTeam]["second"]);
+					//Year, Team, 3p%, 3pa, team age in hover
+					tooltip.html("Year: "+displayYear[0]+"<br/>"+"Team: "+playersTeam+"<br/>"+"Wins: "+displayWins[0])
+						.style("left", (d3.event.pageX) + "px")		
+		            	.style("top", (d3.event.pageY) + "px");
+						})
+					.on("mouseout", function(d) {
+		            	tooltip.transition()
+		            	.style("opacity",0);
+		            });	
+					}
+
+
 				}
 			//
 				else if(lotteryPicks[i]["stats"][yrOffset] !== undefined){
 					for (j=yrOffset; j>=0; j--){
 						if(lotteryPicks[i]["stats"][j]['year'] == yr){
 							//line transition idea from http://jaketrent.com/post/animating-d3-line/
+
 							svgHR.append('line')
 							.attr('class','line')
 							.attr('x1',selected_point.attr("cx"))
