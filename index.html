@@ -1503,7 +1503,7 @@ var playersTeam = d["stats"][yrOffset]["team"];
 						.style("background",playerTeamColor)
 						.style("color", nbaColorsAbbreviated[playersTeam]["second"]);
 					//Year, Team, 3p%, 3pa, team age in hover
-					tooltip.html(d.name+"<br/>"+"Wins: "+d.stats[yrOffset]["wins"]+"<br/>"
+					tooltip.html(d.name+"<br/>"+"Wins: "+d.stats[yrOffset-1]["wins"]+"<br/>"
 						+"Year in League: " + yrOffset)
 						.style("left", (d3.event.pageX + 20) + "px")	
 						.style("height", "65px")	
@@ -1543,7 +1543,7 @@ var playersTeam = d["stats"][yrOffset]["team"];
 						.style("background",playerTeamColor)
 						.style("color", nbaColorsAbbreviated[playersTeam]["second"]);
 					//Year, Team, 3p%, 3pa, team age in hover
-					tooltip.html(d.name+"<br/>"+"Wins: "+d.stats[yrOffset]["wins"]+"<br/>"
+					tooltip.html(d.name+"<br/>"+"Wins: "+d.stats[yrOffset-1]["wins"]+"<br/>"
 						+"Year in League: " + yrOffset)
 						.style("left", (d3.event.pageX + 20) + "px")	
 						.style("height", "65px")	
@@ -1600,7 +1600,7 @@ var playersTeam = d["stats"][yrOffset]["team"];
 
 					selected_point.transition().duration(1500)
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
-					.attr('cy', yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*2/5);
+					.attr('cy', yWins(lotteryPicks[i]["stats"][yrOffset]['wins']) + axesOffset*1/2);
 					if (yrOffset == 0) {
 						svgHR.selectAll(".line").remove()
 					}
@@ -1658,7 +1658,7 @@ var playersTeam = d["stats"][yrOffset]["team"];
 
 							d3.select(point).transition().duration(1500)
 							.attr('cx', xScaleYears(yr) + axesOffset*1/2)
-							.attr('cy', yWins(lotteryPicks[i]["stats"][j]['wins']) + axesOffset*2/5);
+							.attr('cy', yWins(lotteryPicks[i]["stats"][j]['wins']) + axesOffset*1/2);
 						}
 					}
 				}
