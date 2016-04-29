@@ -374,12 +374,16 @@
 			.attr('class', 'locale')
 			.attr("xlink:href", function(d) { return "assets/img/" + d.Team + ".png" })
 			.on("mouseover", function(d){
+				//console.log(d3.event);
 				tooltip.transition()
 					.duration(1000)
 					.style("opacity", 0.9)
 					.style("background",nbaColors[d.Team]["first"])
 					.style("color", nbaColors[d.Team]["second"]);
 				//Year, Team, 3p%, 3pa, team age in hover
+				// console.log(d3.event.pageX);
+				// console.log(d3.event.pageY);
+				//
 				tooltip.html("Year: "+d.Year+"<br/>"+"Team: "+d.Team+"<br/>"+"3P%: "+d.TPP+"<br/>"+"3PA: "+d.TPA+"<br/>"+"AvgAge: "+d.avgage)
 					.style("left", (d3.event.pageX) + "px")		
                 	.style("top", (d3.event.pageY) + "px");
