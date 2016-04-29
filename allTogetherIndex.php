@@ -9,7 +9,7 @@
 	.tooltip {
 	  position: absolute;
 	  width: 200px;
-	  height: 75px;
+	  height: 120px;
 	  pointer-events: none;
 	}
 	.axis path{
@@ -384,9 +384,18 @@
 				// console.log(d3.event.pageX);
 				// console.log(d3.event.pageY);
 				//
+				//console.log(d);
+				//console.log(d3.select(d));
+				//console.log(d3.select(d).attr("x"));
 				tooltip.html("Year: "+d.Year+"<br/>"+"Team: "+d.Team+"<br/>"+"3P%: "+d.TPP+"<br/>"+"3PA: "+d.TPA+"<br/>"+"AvgAge: "+d.avgage)
-					.style("left", (d3.event.pageX) + "px")		
-                	.style("top", (d3.event.pageY) + "px");
+					.style("left", (xScale(d.Year) + axesOffset*2/5+40) + "px")		
+                	.style("top", function() { 
+                		if (isPercent) { 
+                			return (y3PercentScale(d.TPP) + axesOffset*2/5) + "px";
+                		} 
+                		else { 
+                			return (y3AttemptScale(d.TPA) + axesOffset*2/5) + "px"; 
+                		}});
                 })
             .on("mouseout", function(d) {
             	tooltip.transition()
@@ -443,8 +452,15 @@
 									.style("color","#000")
 								//Year, Team, 3p%, 3pa, team age in hover
 								tooltip.html("Year: "+d.Year+"<br/>"+"Avg3P%: "+d.avgTPP+"<br/>"+"Avg3PA: "+d.avgTPA+"<br/>"+"AvgAge: "+d.Age)
-									.style("left", (d3.event.pageX) + "px")		
-				                	.style("top", (d3.event.pageY) + "px");
+									.style("left", (xScale(d.Year) + axesOffset*1/2+20) + "px")		
+				                	.style("top", function () {
+				                		if (isPercent) {
+				                			return (y3PercentScale(d.avgTPP) + axesOffset*1/2) + "px"
+				                		}
+				                		else {
+				                			return (y3AttemptScale(d.avgTPA) + axesOffset*1/2) + "px"
+				                		}
+				                	});
 				                })
 				            .on("mouseout", function(d) {
 				            	tooltip.transition()
