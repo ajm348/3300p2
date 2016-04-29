@@ -616,6 +616,8 @@
 	.call(yWinsAxis);
 	function createXAxis(){
 		lotteryPicks=[]
+		svgHR.selectAll(".trophy").remove();
+
 		svgHR.select(".x.axis").remove();
 		svgHR.selectAll(".line").remove();
 		canPlayHorses = false;
@@ -647,11 +649,33 @@
 				if(shouldAddHorses){
 
 				lotteryPicks.forEach(function(d){
+var playersTeam = d["stats"][yrOffset]["team"];
+					//Go into the NBAteam.json and get their color
+
+					var playerTeamColor = nbaColorsAbbreviated[playersTeam]["first"];
 					svgHR.append("circle")
 					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 					.attr('cy', yWins(0) + axesOffset*1/2)
 					.attr("r", 4)
 					.attr('class', 'horses')
+					.on("mouseover",function(j){
+						console.log(j);
+						tooltip.transition()
+						.duration(200)
+						.style("opacity", 0.9)
+						.style("background",playerTeamColor)
+						.style("color", nbaColorsAbbreviated[playersTeam]["second"]);
+					//Year, Team, 3p%, 3pa, team age in hover
+					tooltip.html(d.name+"<br/>"+"Wins: "+d.stats[yrOffset]["wins"]+"<br/>"
+						+"Year in League: " + yrOffset)
+						.style("left", (d3.event.pageX + 20) + "px")	
+						.style("height", "65px")	
+		            	.style("top", (d3.event.pageY) + "px");
+						})
+					.on("mouseout", function(d) {
+		            	tooltip.transition()
+		            	.style("opacity",0);
+		            })
 					.style("fill", "black");
 				});
 				shouldAddHorses = false;
@@ -662,6 +686,41 @@
 						.attr('cx', xScaleYears(yr) + axesOffset*1/2)
 						.attr('cy', yWins(0) + axesOffset*1/2);
 						});
+					setTimeout(function(){
+						svgHR.selectAll(".horses").remove();
+					lotteryPicks.forEach(function(d){
+var playersTeam = d["stats"][yrOffset]["team"];
+					//Go into the NBAteam.json and get their color
+
+					var playerTeamColor = nbaColorsAbbreviated[playersTeam]["first"];
+					svgHR.append("circle")
+					.attr('cx', xScaleYears(yr) + axesOffset*1/2)
+					.attr('cy', yWins(0) + axesOffset*1/2)
+					.attr("r", 4)
+					.attr('class', 'horses')
+					.on("mouseover",function(j){
+						console.log(j);
+						tooltip.transition()
+						.duration(200)
+						.style("opacity", 0.9)
+						.style("background",playerTeamColor)
+						.style("color", nbaColorsAbbreviated[playersTeam]["second"]);
+					//Year, Team, 3p%, 3pa, team age in hover
+					tooltip.html(d.name+"<br/>"+"Wins: "+d.stats[yrOffset]["wins"]+"<br/>"
+						+"Year in League: " + yrOffset)
+						.style("left", (d3.event.pageX + 20) + "px")	
+						.style("height", "65px")	
+		            	.style("top", (d3.event.pageY) + "px");
+						})
+					.on("mouseout", function(d) {
+		            	tooltip.transition()
+		            	.style("opacity",0);
+		            })
+					.style("fill", "black");
+				});
+					},1500);
+					
+				shouldAddHorses = false;
 				}
 
 				
